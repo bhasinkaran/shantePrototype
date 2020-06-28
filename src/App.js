@@ -19,7 +19,7 @@ function App() {
   const [messages, setMessages]=useState("")
   const [coaches, setCoaches]=useState("");
   const [chats, setChats]=useState("");
-  const [user, setUser]=useState(null);
+  const [user, setUser]=useState("");
 
   React.useEffect(()=>{
     if(user){
@@ -51,7 +51,6 @@ function App() {
   useEffect(() => {
     const handleData = snap => {
       if (snap.val()) setStudents(snap.val());
-      console.log(snap.val());
     }
     dbStudents.on('value', handleData, error => alert(error));
     return () => { dbStudents.off('value', handleData); };
@@ -84,8 +83,7 @@ function App() {
     dbChats.on('value', handleData, error => alert(error));
     return () => { dbChats.off('value', handleData); };
   }, []);
-
-  
+  // console.log(students);
   function withMenu(page){
   return (<div>
           <PageHeader />
@@ -93,9 +91,10 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, students,hscounselors, collegecounselors, colleges, messages, coaches, chats}} />
+      <InfoContext.Provider value={{user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} />
       <Route exact path="/" render={()=> <HomepageLayout />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
+      <InfoContext.Provider/>
     </BrowserRouter>
   );
 }
