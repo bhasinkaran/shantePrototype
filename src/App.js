@@ -19,6 +19,56 @@ function App() {
   const [messages, setMessages]=useState("")
   const [user, setUser]=useState("");
 
+  React.useEffect(()=>{
+    if(user){
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+   
+  }, [user]);
+  React.useEffect(()=>{
+    const data = localStorage.getItem('user');
+    if(data){
+      setUser(JSON.parse(data));
+    }
+    
+  }, []);
+
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setCollegeCounselors(snap.val());
+    }
+    dbCollegeCounselors.on('value', handleData, error => alert(error));
+    return () => { dbCollegeCounselors.off('value', handleData); };
+  }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setColleges(snap.val());
+    }
+    dbColleges.on('value', handleData, error => alert(error));
+    return () => { dbColleges.off('value', handleData); };
+  }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setStudents(snap.val());
+    }
+    dbStudents.on('value', handleData, error => alert(error));
+    return () => { dbStudents.off('value', handleData); };
+  }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setMessages(snap.val());
+    }
+    dbMessages.on('value', handleData, error => alert(error));
+    return () => { dbMessages.off('value', handleData); };
+  }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setHSCounselors(snap.val());
+    }
+    dbHSCounselors.on('value', handleData, error => alert(error));
+    return () => { dbHSCounselors.off('value', handleData); };
+  }, []);
+
   
   function withMenu(page){
   return (<div>
