@@ -6,8 +6,8 @@ import logo from './logo.svg';
 import './App.css';
 import HomepageLayout from './components/LandingPage';
 import PageHeader from './components/PageHeader'
-import {dbMessages, dbCoaches, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors} from './firebase/firebase';
-
+import {dbMessages, dbCoaches, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors, dbChats} from './firebase/firebase';
+import StudentHomePage from './components/student/StudentHomepage'
 
 export const InfoContext = React.createContext();
 
@@ -18,7 +18,8 @@ function App() {
   const [colleges, setColleges]=useState("")
   const [messages, setMessages]=useState("")
   const [coaches, setCoaches]=useState("");
-  const [user, setUser]=useState("");
+  const [chats, setChats]=useState("");
+  const [user, setUser]=useState(null);
 
   React.useEffect(()=>{
     if(user){
@@ -50,6 +51,7 @@ function App() {
   useEffect(() => {
     const handleData = snap => {
       if (snap.val()) setStudents(snap.val());
+      console.log(snap.val());
     }
     dbStudents.on('value', handleData, error => alert(error));
     return () => { dbStudents.off('value', handleData); };
@@ -75,6 +77,13 @@ function App() {
     dbCoaches.on('value', handleData, error => alert(error));
     return () => { dbCoaches.off('value', handleData); };
   }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setChats(snap.val());
+    }
+    dbChats.on('value', handleData, error => alert(error));
+    return () => { dbChats.off('value', handleData); };
+  }, []);
 
   
   function withMenu(page){
@@ -84,10 +93,9 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, students,hscounselors, collegecounselors, colleges, messages, coaches}}/>
+      <InfoContext.Provider value={{user, students,hscounselors, collegecounselors, colleges, messages, coaches, chats}} />
       <Route exact path="/" render={()=> <HomepageLayout />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
-
     </BrowserRouter>
   );
 }
