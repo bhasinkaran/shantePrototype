@@ -12,15 +12,11 @@ const StudentHomePage=()=>{
 //             const {replies, setReplies, artists, setArtists, messages, setMessages, songs, setSongs, posts, setPosts, likes, setLikes, user, setUser, accesstoken, setAccesToken, refreshtoken, setRefreshtoken} = React.useContext(InfoContext);
 
         useEffect(()=>console.log("It changed"), [students]);
-        if(students) 
-        return(
-          <div>
-                        {"students" + students["testuser"]["firstName"]}
-                </div> 
-        )
-        else{
-                return "NONE"
-        }
+       
+        return(<div>
+
+                </div>)
+      
 }
 
 export default StudentHomePage;
