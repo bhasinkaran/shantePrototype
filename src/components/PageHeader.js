@@ -6,7 +6,8 @@ const PageHeader = () => {
     return (
       <Segment
       basic
-      style={{ backgroundColor: "#1DB954", textAlign: "center", marginBottom: "10px" }}
+      style={{ backgroundColor: "#1DB954", textAlign: "center", marginBottom: "0px"}} 
+//       marginBottom: "10px" }
       fluid="true">
           <Header
             as={Link}

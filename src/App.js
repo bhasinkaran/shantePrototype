@@ -6,7 +6,7 @@ import logo from './logo.svg';
 import './App.css';
 import HomepageLayout from './components/LandingPage';
 import PageHeader from './components/PageHeader'
-import {dbMessages, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors} from './firebase/firebase';
+import {dbMessages, dbCoaches, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors} from './firebase/firebase';
 
 
 export const InfoContext = React.createContext();
@@ -17,6 +17,7 @@ function App() {
   const [collegecounselors, setCollegeCounselors]=useState("")
   const [colleges, setColleges]=useState("")
   const [messages, setMessages]=useState("")
+  const [coaches, setCoaches]=useState("");
   const [user, setUser]=useState("");
 
   React.useEffect(()=>{
@@ -32,7 +33,6 @@ function App() {
     }
     
   }, []);
-
   useEffect(() => {
     const handleData = snap => {
       if (snap.val()) setCollegeCounselors(snap.val());
@@ -68,6 +68,13 @@ function App() {
     dbHSCounselors.on('value', handleData, error => alert(error));
     return () => { dbHSCounselors.off('value', handleData); };
   }, []);
+  useEffect(() => {
+    const handleData = snap => {
+      if (snap.val()) setCoaches(snap.val());
+    }
+    dbCoaches.on('value', handleData, error => alert(error));
+    return () => { dbCoaches.off('value', handleData); };
+  }, []);
 
   
   function withMenu(page){
@@ -77,8 +84,9 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
+      <Route exact path="/" render={()=> <HomepageLayout />}/>
+      <Route exact path="/student" render={()=> withMenu(<HomepageLayout />)}/>
 
-      {withMenu(<HomepageLayout />)}
     </BrowserRouter>
   );
 }
