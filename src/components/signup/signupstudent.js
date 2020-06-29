@@ -1,17 +1,17 @@
 import React, { useState, useContext, createRef, useEffect } from 'react';
 import { Header, Checkbox, Card, Container, Segment, Sticky, Grid, Input, GridRow, Divider, GridColumn } from 'semantic-ui-react';
-import { Button, Form, Icon, Image, List, Label, Transition, Modal} from 'semantic-ui-react';
+import { Button, Form, Icon, Image, List, Label, Transition, Modal, Dropdown} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { AppState } from '../../context';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import { dbStudents } from '../../firebase/firebase';
 
-const Name = () => {
+const SignUpStudent = () => {
   const contextRef = createRef();
   const [firstName, setFirstName] = useState(null);
   const [username, setUsername] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [phone, setPhone] = useState(null);
+  const[state, setState]=useState("");
   const Frequency_Array = [
         {
           key: 0,
@@ -80,39 +80,13 @@ const Name = () => {
   function WriteFirebase() {
     if(isValid()){
       
-    const k = dbTasks.push({
-      "description": "Here's an example task created for you!",
-      "duration": "2 minutes",
-      "familyMemberID": user["uid"],
-      "frequency": "Everyday",
-      "importance": "High",
-      "status": false,
-      "taskName": "Example Task",
-      "time": "10 AM",
-      "caregiverId": "None"    });
-
-    let push = k.path['pieces_'][1];
-    const tasks = {
-      [push]: push || null
-    }
-   
-    const Datajson = {
-      "secondaryFam": "null",
-      "firstName": firstName,
-      "rating": "5",
-      "id": user["uid"],
+    const k = dbStudents.push({
+      "firstName":firstName,
       "lastName": lastName,
-      "phone": phone,
-      "type" : "primary",
-      "tasks": tasks,
-      "secondaryFam": "hi",
-      "unassignedTasks": "null",
-      "taskstofam": tasks,
-      "sampletasks": tasks,
-    }
-    dbFamMember.update({
-      [user["uid"]]: Datajson
-    });
+      'username': username,
+        "state": state,
+      "phone": phone  });
+
     console.log("Wrote Name and phone onto firebase!");
       }
     else{
@@ -132,7 +106,6 @@ const Name = () => {
   return (
     <div ref={contextRef}>
       <Sticky context={contextRef} >
-        <PageHeader />
         <Divider hidden />
         <Divider hidden />
         <Divider hidden />
@@ -174,25 +147,42 @@ const Name = () => {
             <Form size="large">
               <Form.Group widths='equal'>
                 <Form.Input
-                  required={true}
+                  required={false}
                   onChange={(e) => { setPhone(e.target.value) }}
                   label='Phone Number:'
                 />
               </Form.Group>
             </Form>
           </Grid.Row>
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Home State:" />
+          </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
 
-          
+                <Dropdown pointing="bottom"
+                                options={Frequency_Array}
+                                        selection
+                                scrolling
+                                placeholder='Select'
+                               onChange={(e, { value }) => setState(value)}
+                                 upward={false}>
+            </Dropdown>
+            </Form.Group>
+            </Form>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={6}>
               <Button circular
                 compact
                 fluid
-                as={ isValid() ? Link : Button}
-                to={isValid() ? `/familymembers/register/caregiver/${user["uid"]}/0` : "/familymembers"}
+                // as={ isValid() ? Link : Button}
+                // to={isValid() ? `/familymembers/register/caregiver/${user["uid"]}/0` : "/familymembers"}
                 color='blue'
                 icon
-                onClick={() => WriteFirebase()}>
+                onClick={() => WriteFirebase()}
+                >
                 <Button.Content>
                   <Icon name="long arrow alternate right" size="large"></Icon>
                 </Button.Content>
@@ -215,4 +205,4 @@ const Name = () => {
   
 }
 
-export default Name;
+export default SignUpStudent;

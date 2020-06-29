@@ -8,6 +8,7 @@ import HomepageLayout from './components/LandingPage';
 import PageHeader from './components/PageHeader'
 import {dbMessages, dbCoaches, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors, dbChats} from './firebase/firebase';
 import StudentHomePage from './components/student/StudentHomepage'
+import SignUpStudent from './components/signup/signupstudent';
 
 export const InfoContext = React.createContext();
 
@@ -94,6 +95,8 @@ function App() {
       <InfoContext.Provider value={{user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
+      <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
+
       </InfoContext.Provider>
     </BrowserRouter>
   );
