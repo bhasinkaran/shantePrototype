@@ -9,6 +9,7 @@ import PageHeader from './components/PageHeader'
 import {dbMessages, dbCoaches, dbCollegeCounselors, dbColleges, dbStudents, dbHSCounselors, dbChats} from './firebase/firebase';
 import StudentHomePage from './components/student/StudentHomepage'
 import SignUpStudent from './components/signup/signupstudent';
+import StudentLogin from './components/student/studentlogin';
 
 export const InfoContext = React.createContext();
 
@@ -21,6 +22,7 @@ function App() {
   const [coaches, setCoaches]=useState("");
   const [chats, setChats]=useState("");
   const [user, setUser]=useState("");
+  const [studentLogged, setStudentLogged] = useState(false);
 
   React.useEffect(()=>{
     if(user){
@@ -92,11 +94,22 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, setUser, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
+      <InfoContext.Provider value={{user, setUser, studentLogged, setStudentLogged, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
+      
+      {/* Student Pages */}
+      <Route exact path="/student/login" render={()=> <StudentLogin />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
       <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
+
+       {/* Coach Pages */}
+
+
+        {/* HS Counselor Pages */}
       
+
+        {/* College Counselor Pages */}
+
       </InfoContext.Provider>
     </BrowserRouter>
   );

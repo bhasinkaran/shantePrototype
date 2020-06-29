@@ -1,7 +1,7 @@
 import {Redirect} from 'react-router-dom'
 import _ from 'lodash'
 import React, {useState, useEffect, useContext} from 'react';
-import {Container, Header, Grid, Loader} from 'semantic-ui-react'
+import {Container, Header, Grid, Loader, Button} from 'semantic-ui-react'
 import {Router , useParams} from  'react-router-dom';
 
 import PageHeader from '../PageHeader'
@@ -23,6 +23,17 @@ const StudentHomePage=()=>{
                                                 <Header textAlign="center" style={{marginTop:"-20px"}} as="h4" > {students[user]['state']}</Header>
 
                                         </Grid.Row>
+                                        <Grid.Row>
+                                                <Header  textAlign="center" as="h2" >How are you doing today?</Header>
+                                                <Button.Group size='large'>
+                                                <Button>Not Too Good</Button>
+                                                 <Button.Or />
+                                                <Button>Just Fine</Button>
+                                                <Button.Or />
+                                                <Button>Pretty Great</Button>
+                                                </Button.Group>
+                                        </Grid.Row>
+
                                          <Grid.Row>
                                          <Header textAlign="center" style={{marginTop:"20px"}} as="h3" >How are you doing today?</Header>
 
