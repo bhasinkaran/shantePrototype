@@ -1,7 +1,7 @@
 import {Redirect} from 'react-router-dom'
 import _ from 'lodash'
 import React, {useState, useEffect, useContext} from 'react';
-import {Container, Search, Grid} from 'semantic-ui-react'
+import {Container, Header, Grid} from 'semantic-ui-react'
 import {Router , useParams} from  'react-router-dom';
 
 import PageHeader from '../PageHeader'
@@ -13,7 +13,16 @@ const StudentHomePage=()=>{
         // useEffect(()=>console.log("It changed"), [students]);
        
         return(<div>
-        
+                <Container>
+                        <Grid>
+                                <Grid.Row>
+                                        <Header as="h2" > Welcome {user['firstName']}</Header>
+                                </Grid.Row>
+                                <Grid.Row>
+
+                                </Grid.Row>             
+                        </Grid>
+                </Container>
                 </div>)
       
 }

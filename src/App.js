@@ -92,11 +92,11 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
+      <InfoContext.Provider value={{user, setUser, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
       <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
-
+      
       </InfoContext.Provider>
     </BrowserRouter>
   );

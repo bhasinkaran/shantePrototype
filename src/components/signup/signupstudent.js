@@ -4,11 +4,16 @@ import { Button, Form, Icon, Image, List, Label, Transition, Modal, Dropdown} fr
 import { Link } from 'react-router-dom';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import { dbStudents } from '../../firebase/firebase';
+import {InfoContext} from '../../App'
 
 const SignUpStudent = () => {
+        const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
+
   const contextRef = createRef();
   const [firstName, setFirstName] = useState(null);
   const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+
   const [lastName, setLastName] = useState(null);
   const [phone, setPhone] = useState(null);
   const[state, setState]=useState("");
@@ -79,13 +84,17 @@ const SignUpStudent = () => {
 
   function WriteFirebase() {
     if(isValid()){
-      
-    const k = dbStudents.push({
-      "firstName":firstName,
+      const data={"firstName":firstName,
       "lastName": lastName,
       'username': username,
-        "state": state,
-      "phone": phone  });
+      'password': password,
+      "state": state,
+      "phone": phone}
+
+    const k = dbStudents.update({
+            [username]:data
+    });
+      setUser(data);
 
     console.log("Wrote Name and phone onto firebase!");
       }
@@ -95,7 +104,7 @@ const SignUpStudent = () => {
 
   }
    function isValid(){
-     var x=(!isNaN(Number(phone))) && (typeof(firstName) =="string" && typeof(lastName)=="string")
+     var x=(!isNaN(Number(phone))) && (typeof(firstName) =="string" && typeof(lastName)=="string" && !students[username])
      console.log(x)
      console.log(typeof(firstName)=="string")
      console.log(typeof(lastName)=="string")
@@ -147,9 +156,20 @@ const SignUpStudent = () => {
             <Form size="large">
               <Form.Group widths='equal'>
                 <Form.Input
-                  required={false}
-                  onChange={(e) => { setPhone(e.target.value) }}
-                  label='Phone Number:'
+                  required={true}
+                  onChange={(e) => { setUsername(e.target.value) }}
+                  label='Username:'
+                />
+              </Form.Group>
+            </Form>
+          </Grid.Row>
+          <Grid.Row>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Form.Input
+                  required={true}
+                  onChange={(e) => { setPassword(e.target.value) }}
+                  label='Password:'
                 />
               </Form.Group>
             </Form>
@@ -160,14 +180,13 @@ const SignUpStudent = () => {
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
               <Form.Group widths='equal'>
-
                 <Dropdown pointing="bottom"
                                 options={Frequency_Array}
-                                        selection
+                                selection
                                 scrolling
                                 placeholder='Select'
-                               onChange={(e, { value }) => setState(value)}
-                                 upward={false}>
+                                onChange={(e, { value }) => setState(value)}
+                                upward={false}>
             </Dropdown>
             </Form.Group>
             </Form>
@@ -177,8 +196,8 @@ const SignUpStudent = () => {
               <Button circular
                 compact
                 fluid
-                // as={ isValid() ? Link : Button}
-                // to={isValid() ? `/familymembers/register/caregiver/${user["uid"]}/0` : "/familymembers"}
+                as={ isValid() ? Link : Button}
+                to={isValid() ? `/student` : '/'}
                 color='blue'
                 icon
                 onClick={() => WriteFirebase()}
