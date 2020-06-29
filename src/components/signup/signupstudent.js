@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import { dbStudents } from '../../firebase/firebase';
 import {InfoContext} from '../../App'
+import storage from '../../firebase/firebase'
 
 const SignUpStudent = () => {
         const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
@@ -13,7 +14,8 @@ const SignUpStudent = () => {
   const [firstName, setFirstName] = useState(null);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
-
+  const [image, setImage] = useState(null);
+  const [url, setUrl]=useState("");
   const [lastName, setLastName] = useState(null);
   const [phone, setPhone] = useState(null);
   const[state, setState]=useState("");
@@ -84,16 +86,42 @@ const SignUpStudent = () => {
 
   function WriteFirebase() {
     if(isValid()){
-      const data={"firstName":firstName,
-      "lastName": lastName,
-      'username': username,
-      'password': password,
-      "state": state,
-      "phone": phone}
-
-    const k = dbStudents.update({
-            [username]:data
-    });
+        const data={"firstName":firstName,
+        "lastName": lastName,
+        'username': username,
+        'password': password,
+        "state": state,
+        "phone": phone,
+          "url":url}
+        const k = dbStudents.update({
+                [username]:data
+        });
+      
+      const uploadTask = storage.ref(`students/${username}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // setProgress(progress);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("students")
+          .child(username)
+          .getDownloadURL()
+          .then(url => {
+           dbStudents.child(username).update({
+                   "url":url
+           });
+          });
+      }
+    );
+   
       setUser(data.username);
 
     console.log("Wrote Name and phone onto firebase!");
@@ -159,6 +187,19 @@ const SignUpStudent = () => {
                   required={true}
                   onChange={(e) => { setUsername(e.target.value) }}
                   label='Username:'
+                />
+              </Form.Group>
+            </Form>
+          </Grid.Row>
+          <Grid.Row>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Form.Input
+                  onChange={(e) => { 
+                        console.log(e.target.files[0])
+                        setImage(e.target.files[0]) }}
+                  label='Profile Picture:'
+                  type="file"
                 />
               </Form.Group>
             </Form>
