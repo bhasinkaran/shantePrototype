@@ -24,17 +24,17 @@ function App() {
 
   React.useEffect(()=>{
     if(user){
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user',user);
     }
    
   }, [user]);
   React.useEffect(()=>{
     const data = localStorage.getItem('user');
     if(data){
-      setUser(JSON.parse(data));
+      setUser(data);
     }
-    
   }, []);
+  
   useEffect(() => {
     const handleData = snap => {
       if (snap.val()) setCollegeCounselors(snap.val());

@@ -94,7 +94,7 @@ const SignUpStudent = () => {
     const k = dbStudents.update({
             [username]:data
     });
-      setUser(data);
+      setUser(data.username);
 
     console.log("Wrote Name and phone onto firebase!");
       }
