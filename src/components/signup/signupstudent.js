@@ -92,6 +92,7 @@ const SignUpStudent = () => {
         'password': password,
         "state": state,
         "phone": phone,
+        "pioneerform":false,
           "url":url}
         const k = dbStudents.update({
                 [username]:data

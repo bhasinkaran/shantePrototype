@@ -1,7 +1,7 @@
 import {Redirect} from 'react-router-dom'
 import _ from 'lodash'
 import React, {useState, useEffect, useContext} from 'react';
-import {Container, Header, Grid, Loader, Button} from 'semantic-ui-react'
+import {Container, Header, Divider, Grid, Loader, Button} from 'semantic-ui-react'
 import {Router , useParams} from  'react-router-dom';
 
 import PageHeader from '../PageHeader'
@@ -23,25 +23,31 @@ const StudentHomePage=()=>{
                                                 <Header textAlign="center" style={{marginTop:"-20px"}} as="h4" > {students[user]['state']}</Header>
 
                                         </Grid.Row>
+                                        <Divider />
                                         <Grid.Row>
-                                                <Header  textAlign="center" as="h2" >How are you doing today?</Header>
-                                                <Button.Group size='large'>
-                                                <Button>Not Too Good</Button>
+                                                <Header  textAlign="center" as="h3" >How are you doing today?</Header>
+                                                <Button.Group size='small'>
+                                                <Button color="brown">Not Too Good</Button>
                                                  <Button.Or />
-                                                <Button>Just Fine</Button>
+                                                <Button color="orange">Just Fine</Button>
                                                 <Button.Or />
-                                                <Button>Pretty Great</Button>
+                                                <Button color="green">Pretty Great</Button>
                                                 </Button.Group>
                                         </Grid.Row>
 
                                          <Grid.Row>
-                                         <Header textAlign="center" style={{marginTop:"20px"}} as="h3" >How are you doing today?</Header>
 
                                         </Grid.Row> 
                                 </Grid.Column> 
                                 <Grid.Column width={4}></Grid.Column>
                                 <Grid.Column width={6}>
-                                                 <Header as="h2" > Upcoming Deadlines</Header>
+                                                <Grid.Row>
+
+                                                        <Header as="h2" > Upcoming Deadlines</Header>
+                                                        <Header as="h4" style={{marginTop:"-20px"}} >One step closer to your goals.</Header>
+
+                                                 </Grid.Row>
+                                                 <Divider></Divider>
                                                  {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> : <Header as="h4"> None Upcoming.</Header>}
 
                                 </Grid.Column>           
