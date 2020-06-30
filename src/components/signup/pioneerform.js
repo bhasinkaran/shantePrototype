@@ -11,9 +11,9 @@ const PioneerForm = () => {
         const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
 
   const contextRef = createRef();
-  const [targetmajors, setTargetMajors] = useState(null);
+  const [targetmajors, setTargetMajors] = useState([]);
   const [targettuition, setTargetTuition] = useState(null);
-  const [targetlocations, setTargetLocations] = useState(null);
+  const [targetlocations, setTargetLocations] = useState([]);
   const [targetcareers, setTargetCareers] = useState(null);
   const Tuitionrange = [
         {
@@ -294,7 +294,7 @@ const Majors = [
                 text:"Dental Studies"
         },
         {
-                key:24,
+                key:30,
                 value:"Architecture",
                 text:"Architecture"
         },
@@ -307,7 +307,6 @@ const Majors = [
         "targetmajors":targetmajors,
         "targetlocations": targetlocations,
         "pioneerform":true,
-          "url":url
         }
         const k = dbStudents.update({
                 [user]:data
@@ -321,7 +320,7 @@ const Majors = [
 
   }
    function isValid(){
-     var x=(targetlocations.length>0&&targetmajors.length>0 && targettuition==1)
+     var x=(targetlocations.length>0&&targetmajors.length>0 && targettuition)
      return (x)
     
     }
@@ -332,7 +331,25 @@ const Majors = [
         <Divider hidden />
         <Divider hidden />
         <Grid padded textAlign="center">
-          
+        <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Prospective Majors:" />
+          </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Dropdown pointing="bottom"
+                                options={Majors}
+                                selection
+                                scrolling
+                                multiple
+                                placeholder='Select'
+                                onChange={(e, { value }) => 
+                                               setTargetMajors(value)}
+                                upward={false}>
+            </Dropdown>
+            </Form.Group>
+            </Form>
+          </Grid.Row>
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Home State:" />
           </Grid.Row>
@@ -343,8 +360,28 @@ const Majors = [
                                 options={Tuitionrange}
                                 selection
                                 scrolling
+                                placeholder='Select Upper Limit for Tuition'
+                                onChange={(e, { value }) => setTargetTuition(value)}
+                                upward={false}>
+            </Dropdown>
+            </Form.Group>
+            </Form>
+          </Grid.Row>
+          
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Candidate States for College:" />
+          </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Dropdown pointing="bottom"
+                                options={Locations}
+                                selection
+                                scrolling
+                                multiple
                                 placeholder='Select'
-                                onChange={(e, { value }) => setState(value)}
+                                onChange={(e, { value }) => 
+                                               setTargetLocations(value)}
                                 upward={false}>
             </Dropdown>
             </Form.Group>
@@ -370,7 +407,7 @@ const Majors = [
           <Grid.Row>
             <Grid.Column width={6}>
               <Header as="h3">
-               We do not share your data with any outside party.
+               This information will help us find appropriate colleges for you.
               </Header>
             </Grid.Column>
           </Grid.Row>
