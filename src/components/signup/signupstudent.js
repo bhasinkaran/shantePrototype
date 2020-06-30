@@ -93,7 +93,8 @@ const SignUpStudent = () => {
         "state": state,
         "phone": phone,
         "pioneerform":false,
-          "url":url}
+          "url":url
+        }
         const k = dbStudents.update({
                 [username]:data
         });
