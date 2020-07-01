@@ -24,6 +24,11 @@ const SignUpStudent = () => {
   const [highschoolbool, setHSBool]=useState(null);
   const [highschool, setHighSchool]=useState(null);
   const [date, setDate] = useState(new Date());
+  const [line1, setLine1]=useState("");
+  const [line2, setLine2]=useState("");
+  const [zipcode, setZipcode]=useState("");
+  const [city, setCity]=useState("");
+
 
   const[currentgrade, setCurrentGrade]=useState(null);
   const[gradyear, setGradYear]=useState(null);
@@ -234,6 +239,16 @@ const SignUpStudent = () => {
         "state": state,
         "phone": phone,
         "birthday": birthday,
+        "hsbool": highschoolbool,
+        "highschool":highschool,
+        "gradyear":gradyear,
+        "grade":currentgrade,
+        "address":{
+          "line1":line1,
+          "line2": line2,
+          "zipcode": zipcode,
+          "city":city
+        },
         "race":race,
         "gender":gender,
         "address":address,
@@ -274,6 +289,7 @@ const SignUpStudent = () => {
 
     console.log("Wrote Name and phone onto firebase!");
       }
+    
     else{
       alert("Please enter a number for the phone number.")
     }
@@ -291,112 +307,158 @@ const SignUpStudent = () => {
   return (
     <div ref={contextRef}>
       {/* <Sticky context={contextRef} > */}
+      <Container>
+
         <Divider hidden />
-        <Grid padded textAlign="center">
-          <Grid.Row>
-            <Form size="large" >
-              <Form.Group widths='equal'>
-                <Form.Input
-                  required={true}
-                  onChange={(e) => { setFirstName(e.target.value) }}
-                  label='First Name:'
-                />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Form.Input
-                  required={true}
-                  onChange={(e) => { setLastName(e.target.value) }}
-                  label='Last Name:'
-                />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
+        {/* <Grid padded textAlign="center">
+          <Grid.Row> */}
+          <Form>
+
+          <Form.Group widths='equal'>
+          <Form.Input fluid label='First name'             required={true}
+onChange={(e) => { setFirstName(e.target.value) }}  placeholder='First name' />
+          <Form.Input fluid             required={true}
+label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder='Last name' />
+          <Form.Select
+            fluid
+            label='Gender'
+            options={genders}
+            required={true}
+            placeholder='Gender'
+            onChange={(e, { value }) => {
+              setGender(value)
+              console.log(value);
+            }}
+
+          />
+          <Form.Select pointing="bottom"
+            options={races}
+            selection
+            required={true}
+            scrolling
+            label='Race'
+            placeholder='Select'
+            onChange={(e, { value }) => setRace(value)}
+            upward={false}>
+           </Form.Select>
+        </Form.Group>
+
+        <Form.Group widths='equal'>
                 <Form.Input
                   required={true}
                   onChange={(e) => { setPhone(e.target.value) }}
                   label='Phone Number:'
                 />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
                 <Form.Input
                   required={true}
                   onChange={(e) => { setUsername(e.target.value) }}
                   label='Username:'
                 />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Form.Input
+                 <Form.Input
                   required={true}
                   onChange={(e) => { setPassword(e.target.value) }}
                   label='Password:'
                 />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
+        </Form.Group>
+
+        <Form.Group>
+        
+            <Form.Input
+                  required={true}
+                  onChange={(e) => { setLine2(e.target.value) }}
+                  label='Address Line 1:'
+                />
+            <Form.Input
+                  required={true}
+                  onChange={(e) => { setLine1(e.target.value) }}
+                  label='Address Line 2:'
+                />
+             <Form.Input
+                  required={true}
+                  onChange={(e) => { setCity(e.target.value) }}
+                  label='City:'
+                />
+               <Form.Input
+                  required={true}
+                  onChange={(e) => { setZipcode(e.target.value) }}
+                  label='Zipcode:'
+                />
+                <Form.Select pointing="bottom"
+                                options={Frequency_Array}
+                                selection
+                                scrolling
+                                required={true}
+                                label='State'
+                                placeholder='Select'
+                                onChange={(e, { value }) => setState(value)}
+                                upward={false}>
+            </Form.Select>
+           
+            
+        </Form.Group>
+       
+
+        <Form.Group inline>
+          <label>Are you currently in high school</label>
+          <Form.Radio
+            label='Yes'
+            value='Yes'
+            checked={highschoolbool === true}
+            onChange={()=>setHSBool(true)}
+          />
+          <Form.Radio
+            label='No'
+            value='No'
+            checked={highschoolbool === false}
+            onChange={()=>setHSBool(false)}
+          />
+          </Form.Group>
+
+          <Form.Group>
+          <Form.Input
+                  required={highschoolbool}
+                  onChange={(e) => { setHighSchool(e.target.value) }}
+                  label='High School:'
+                />
+                 <Form.Select pointing="bottom"
+                                options={grades}
+                                selection
+                                scrolling
+                                required={highschoolbool}
+                                label='Current Grade'
+                                placeholder='Select'
+                                onChange={(e, { value }) => setCurrentGrade(value)}
+                                upward={false}>
+                </Form.Select>
+                <Form.Select pointing="bottom"
+                                options={gradyears}
+                                selection
+                                label='Expected Graduation Year'
+                                scrolling
+                                required={highschoolbool}
+                                placeholder='Select'
+                                onChange={(e, { value }) => setGradYear(value)}
+                                upward={false}>
+                </Form.Select>
                 <Form.Input
+
+                  label="Profile Picture"
                   onChange={(e) => { 
                         console.log(e.target.files[0])
                         setImage(e.target.files[0]) }}
                   label='Profile Picture:'
                   type="file"
                 />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Home State:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'  required={true}>
-                <Dropdown pointing="bottom"
-                                options={Frequency_Array}
-                                selection
-                                scrolling
-                                required={true}
-                                placeholder='Select'
-                                onChange={(e, { value }) => setState(value)}
-                                upward={false}>
-            </Dropdown>
-            </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Race:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={races}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setRace(value)}
-                                upward={false}>
-            </Dropdown>
-            </Form.Group>
-            </Form>
-            
+
+          </Form.Group>
+          <Header as="h5" >Birthday: </Header>
+          <TestDate />
+            <Divider hidden />
+        </Form>
+{/*            
+
+         
+
           </Grid.Row>
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Birthday:" />
@@ -411,23 +473,10 @@ const SignUpStudent = () => {
           </Grid.Row>
         
 
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Gender:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={genders}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setGender(value)}
-                                upward={false}>
-            </Dropdown>
+
             </Form.Group>
             </Form>
-          </Grid.Row>
+          </Grid.Row> 
           <Grid.Row>
           <Form>
         <Form.Field>
@@ -439,8 +488,8 @@ const SignUpStudent = () => {
             label='Yes'
             name='checkboxRadioGroup'
             value='Yes'
-            checked={highschoolbool==='Yes'}
-            onChange={(e,{value})=>setHSBool(value)}
+            checked={highschoolbool===true}
+            onChange={(e,{value})=>setHSBool(true)}
           />
         </Form.Field>
         <Form.Field>
@@ -449,13 +498,13 @@ const SignUpStudent = () => {
             label='No'
             name='checkboxRadioGroup'
             value='No'
-            checked={highschoolbool === 'No'}
-            onChange={(e,{value})=>setHSBool(value)}
+            checked={highschoolbool === false}
+            onChange={(e,{value})=>setHSBool(false)}
           />
         </Form.Field>
       </Form>
     </Grid.Row>
-              {/* THIS COULD BE ONLY SHOWS IF THEY ARE HIGH SCHOOLERS */}
+              {/* THIS COULD BE ONLY SHOWS IF THEY ARE HIGH SCHOOLERS 
           <Grid.Row>
             <Form size="large">
               <Form.Group widths='equal'>
@@ -470,20 +519,7 @@ const SignUpStudent = () => {
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Current Grade:" />
           </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={grades}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setCurrentGrade(value)}
-                                upward={false}>
-                </Dropdown>
-            </Form.Group>
-            </Form>
-          </Grid.Row>
+
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Expected Graduation Year:" />
           </Grid.Row>
@@ -526,8 +562,10 @@ const SignUpStudent = () => {
               </Header>
             </Grid.Column>
           </Grid.Row>
-        </Grid>
+        </Grid> */}
       {/* </Sticky> */}
+
+      </Container>
     </div>
 
   );
