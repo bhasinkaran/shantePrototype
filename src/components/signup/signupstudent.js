@@ -28,7 +28,7 @@ const SignUpStudent = () => {
   const [line2, setLine2]=useState("");
   const [zipcode, setZipcode]=useState("");
   const [city, setCity]=useState("");
-
+  const[nameofFosterCare, setFosterAgency] = useState("");
 
   const[currentgrade, setCurrentGrade]=useState(null);
   const[gradyear, setGradYear]=useState(null);
@@ -398,19 +398,33 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
         </Form.Group>
        
 
-        <Form.Group inline>
-          <label>Are you currently in high school</label>
+        <Form.Group inline required={true}>
+          <label>Currently in high school</label>
           <Form.Radio
             label='Yes'
             value='Yes'
             checked={highschoolbool === true}
             onChange={()=>setHSBool(true)}
+            
           />
           <Form.Radio
             label='No'
             value='No'
             checked={highschoolbool === false}
             onChange={()=>setHSBool(false)}
+          />
+          <label>Do you have a foster parent/case worker</label>
+          <Form.Radio
+            label='Yes'
+            value='Yes'
+            checked={fosterParent === true}
+            onChange={()=>setFosterParent(true)}
+          />
+          <Form.Radio
+            label='No'
+            value='No'
+            checked={fosterParent === false}
+            onChange={()=>setFosterParent(false)}
           />
           </Form.Group>
 
@@ -441,6 +455,11 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
                                 upward={false}>
                 </Form.Select>
                 <Form.Input
+                  required={fosterParent}
+                  onChange={(e) => { setFosterAgency(e.target.value) }}
+                  label='Name of Foster Care Agency:'
+                />
+                {/* <Form.Input
 
                   label="Profile Picture"
                   onChange={(e) => { 
@@ -448,7 +467,7 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
                         setImage(e.target.files[0]) }}
                   label='Profile Picture:'
                   type="file"
-                />
+                /> */}
 
           </Form.Group>
           <Header as="h5" >Birthday: </Header>
