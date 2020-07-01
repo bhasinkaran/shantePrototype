@@ -6,16 +6,15 @@ const PageHeader = () => {
     return (
       <Segment
       basic
-      style={{ backgroundColor: "#1DB954", textAlign: "center", marginBottom: "0px"}} 
+      style={{ backgroundColor: "#80ffff", textAlign: "center", marginBottom: "0px"}} 
 //       marginBottom: "10px" }
       fluid="true">
           <Header
             as={Link}
             to={`/`}
-            inverted 
-            content="PUT COMPANY NAME HERE" 
+            content="Tassel Turn" 
             size="large" 
-            color="black"
+            color='black'
             style={{cursor: "default"}}
           />
     </Segment>
