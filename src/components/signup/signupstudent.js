@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import { dbStudents } from '../../firebase/firebase';
 import {InfoContext} from '../../App'
+import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 import storage from '../../firebase/firebase'
 
 const SignUpStudent = () => {
@@ -20,6 +22,9 @@ const SignUpStudent = () => {
   const [phone, setPhone] = useState(null);
   const[state, setState]=useState("");
   const [highschoolbool, setHSBool]=useState(null);
+  const [highschool, setHighSchool]=useState(null);
+  const [date, setDate] = useState(new Date());
+
   const[currentgrade, setCurrentGrade]=useState(null);
   const[gradyear, setGradYear]=useState(null);
   const[birthday, setBirthday]=useState(null);
@@ -172,8 +177,53 @@ const SignUpStudent = () => {
       }
   
   ]
+  const gradyears =[
+    {
+      key:0,
+      value: "2021",
+      text:"2021"
+    },
+    {
+      key:1,
+      value: "2022",
+      text:"2022"
+    },
+    {
+      key:2,
+      value: "2023",
+      text:"2023"
+    },
+    {
+      key:3,
+      value: "2024",
+      text:"2024"
+    },
+    {
+      key:4,
+      value: "2025",
+      text:"2025"
+    }
+  ]
 
+  const TestDate = () => {
 
+    const onChange = (e, data) => {
+      // setNewDate(currentDate => data.value)
+      console.log(data.value);
+      // console.log(currentDate)
+      setBirthday(data.value);
+      // console.log(data)
+      // console.log()
+
+    };
+    return <SemanticDatepicker
+      onChange={onChange}
+      clearable={true}
+      keepOpenOnClear={true}
+      locale="en-US"
+      value={date}
+    />;
+  };
 
   function WriteFirebase() {
     if(isValid()){
@@ -317,11 +367,12 @@ const SignUpStudent = () => {
           </Grid.Row>
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
-              <Form.Group widths='equal'>
+              <Form.Group widths='equal'  required={true}>
                 <Dropdown pointing="bottom"
                                 options={Frequency_Array}
                                 selection
                                 scrolling
+                                required={true}
                                 placeholder='Select'
                                 onChange={(e, { value }) => setState(value)}
                                 upward={false}>
@@ -345,7 +396,21 @@ const SignUpStudent = () => {
             </Dropdown>
             </Form.Group>
             </Form>
+            
           </Grid.Row>
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Birthday:" />
+          </Grid.Row>
+          <Grid.Row style={{ marginTop: "-20px"}}>
+            <TestDate />
+            <Divider hidden />
+
+          </Grid.Row>
+          <Grid.Row>
+
+          </Grid.Row>
+        
+
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Gender:" />
           </Grid.Row>
@@ -389,6 +454,18 @@ const SignUpStudent = () => {
           />
         </Form.Field>
       </Form>
+    </Grid.Row>
+              {/* THIS COULD BE ONLY SHOWS IF THEY ARE HIGH SCHOOLERS */}
+          <Grid.Row>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Form.Input
+                  required={true}
+                  onChange={(e) => { setHighSchool(e.target.value) }}
+                  label='High School:'
+                />
+              </Form.Group>
+            </Form>
           </Grid.Row>
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
             <Header as="h4" content="Current Grade:" />
@@ -407,6 +484,24 @@ const SignUpStudent = () => {
             </Form.Group>
             </Form>
           </Grid.Row>
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Expected Graduation Year:" />
+          </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Dropdown pointing="bottom"
+                                options={gradyears}
+                                selection
+                                scrolling
+                                placeholder='Select'
+                                onChange={(e, { value }) => setGradYear(value)}
+                                upward={false}>
+                </Dropdown>
+            </Form.Group>
+            </Form>
+          </Grid.Row>
+          
           <Grid.Row>
             <Grid.Column width={6}>
               <Button circular
