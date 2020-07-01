@@ -35,7 +35,6 @@ const SignUpStudent = () => {
   const[birthday, setBirthday]=useState(null);
   const[race,setRace]=useState(null);
   const[gender,setGender]=useState(null);
-  const[address,setAddress]=useState(null);
   const[fosterParent, setFosterParent] = useState(null);
   const Frequency_Array = [
         {
@@ -213,7 +212,7 @@ const SignUpStudent = () => {
   const TestDate = () => {
 
     const onChange = (e, data) => {
-      // setNewDate(currentDate => data.value)
+      setDate(data.value)
       console.log(data.value);
       // console.log(currentDate)
       setBirthday(data.value);
@@ -243,6 +242,7 @@ const SignUpStudent = () => {
         "highschool":highschool,
         "gradyear":gradyear,
         "grade":currentgrade,
+        "fosterparent":fosterParent,
         "address":{
           "line1":line1,
           "line2": line2,
@@ -251,8 +251,6 @@ const SignUpStudent = () => {
         },
         "race":race,
         "gender":gender,
-        "address":address,
-        "fosterParent":fosterParent,
         "pioneerform":false,
           "url":url
         }
@@ -356,6 +354,7 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
                 />
                  <Form.Input
                   required={true}
+                  type='password'
                   onChange={(e) => { setPassword(e.target.value) }}
                   label='Password:'
                 />
@@ -459,20 +458,34 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
                   onChange={(e) => { setFosterAgency(e.target.value) }}
                   label='Name of Foster Care Agency:'
                 />
-                {/* <Form.Input
-
-                  label="Profile Picture"
-                  onChange={(e) => { 
-                        console.log(e.target.files[0])
-                        setImage(e.target.files[0]) }}
-                  label='Profile Picture:'
-                  type="file"
-                /> */}
+               
 
           </Form.Group>
           <Header as="h5" >Birthday: </Header>
           <TestDate />
+          <Form.Input fluid
+
+label="Profile Picture"
+onChange={(e) => { 
+      console.log(e.target.files[0])
+      setImage(e.target.files[0]) }}
+label='Profile Picture:'
+type="file"
+/>
             <Divider hidden />
+            <Button circular
+                compact
+                fluid
+                as={ isValid() ? Link : Button}
+                to={isValid() ? `/signup/student/pioneerform` : '/'}
+                color='blue'
+                icon
+                onClick={() => WriteFirebase()}
+                >
+                <Button.Content>
+                  <Icon name="long arrow alternate right" size="large"></Icon>
+                </Button.Content>
+              </Button>
         </Form>
 {/*            
 

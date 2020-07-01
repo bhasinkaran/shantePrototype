@@ -8,13 +8,14 @@ import {InfoContext} from '../../App'
 import storage from '../../firebase/firebase'
 
 const PioneerForm = () => {
-        const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
-
+  const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
   const contextRef = createRef();
   const [targetmajors, setTargetMajors] = useState([]);
   const [targettuition, setTargetTuition] = useState(null);
   const [targetlocations, setTargetLocations] = useState([]);
-  const [targetcareers, setTargetCareers] = useState(null);
+  const [content, setContent]=useState([]);
+  const[typeSchool, setTypeSchool]=useState("");
+  const [aid, setAid] = useState(null);
   const Tuitionrange = [
         {
           key: 0,
@@ -299,6 +300,28 @@ const Majors = [
                 text:"Architecture"
         },
       ]
+      const types=[
+              {
+                      key:0,
+                      text: "Community College",
+                      value: "Community College"
+              },
+              {
+                key:1,
+                text: "4-Year College/University",
+                value: "4-Year College/University"
+                },
+                {
+                        key:2,
+                        text: "Apprenticeship Program",
+                        value: "Apprenticeship Program"
+                },
+                {
+                        key:3,
+                        text: "Trade School",
+                        value: "Trade School"
+                }
+      ]
 
 
   function WriteFirebase() {
@@ -307,10 +330,18 @@ const Majors = [
         "targetmajors":targetmajors,
         "targetlocations": targetlocations,
         "pioneerform":true,
+        "aid":aid, 
+
         }
-        const k = dbStudents.update({
-                [user]:data
-        });
+                dbStudents.child(user).child("targetmajors").set( targetmajors);
+                dbStudents.child(user).child("targetlocations").set( targetlocations);
+                dbStudents.child(user).child("targettuition").set( targettuition);
+                dbStudents.child(user).child("pioneerform").set(true);
+
+
+
+
+        ;
 
     console.log("Wrote Name and phone onto firebase!");
       }
@@ -351,7 +382,7 @@ const Majors = [
             </Form>
           </Grid.Row>
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Home State:" />
+            <Header as="h4" content="Upper Limit on Tuition Range:" />
           </Grid.Row>
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
@@ -367,9 +398,31 @@ const Majors = [
             </Form.Group>
             </Form>
           </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              
+        <Form.Group inline required={true}>
+          <label>Do you prefer institutions or schools that offer need-based financial aid?</label>
+          <Form.Radio
+            label='Yes'
+            value='Yes'
+            checked={aid === true}
+            onChange={()=>setAid(true)}
+            
+          />
+          <Form.Radio
+            label='No'
+            value='No'
+            checked={aid === false}
+            onChange={()=>setAid(false)}
+          />
+                
+            </Form.Group>
+            </Form>
+          </Grid.Row>
           
           <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Candidate States for College:" />
+            <Header as="h4" content="Preferred Locations for Colleges:" />
           </Grid.Row>
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
@@ -382,6 +435,22 @@ const Majors = [
                                 placeholder='Select'
                                 onChange={(e, { value }) => 
                                                setTargetLocations(value)}
+                                upward={false}>
+            </Dropdown>
+            </Form.Group>
+            </Form>
+          </Grid.Row>
+          <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Dropdown pointing="bottom"
+                                options={types}
+                                selection
+                                scrolling
+                                multiple
+                                placeholder='Select'
+                                onChange={(e, { value }) => 
+                                               setTypeSchool(value)}
                                 upward={false}>
             </Dropdown>
             </Form.Group>
