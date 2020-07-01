@@ -235,9 +235,7 @@ const SignUpStudent = () => {
     }
   return (
     <div ref={contextRef}>
-      <Sticky context={contextRef} >
-        <Divider hidden />
-        <Divider hidden />
+      {/* <Sticky context={contextRef} > */}
         <Divider hidden />
         <Grid padded textAlign="center">
           <Grid.Row>
@@ -371,7 +369,7 @@ const SignUpStudent = () => {
             name='checkboxRadioGroup'
             value='Yes'
             checked={highschoolbool==='Yes'}
-            onChange={(e,{value})=>setHSBool({value})}
+            onChange={(e,{value})=>setHSBool(value)}
           />
         </Form.Field>
         <Form.Field>
@@ -381,7 +379,7 @@ const SignUpStudent = () => {
             name='checkboxRadioGroup'
             value='No'
             checked={highschoolbool === 'No'}
-            onChange={(e,{value})=>setHSBool({value})}
+            onChange={(e,{value})=>setHSBool(value)}
           />
         </Form.Field>
       </Form>
@@ -399,7 +397,7 @@ const SignUpStudent = () => {
                                 placeholder='Select'
                                 onChange={(e, { value }) => setCurrentGrade(value)}
                                 upward={false}>
-            </Dropdown>
+                </Dropdown>
             </Form.Group>
             </Form>
           </Grid.Row>
@@ -428,7 +426,7 @@ const SignUpStudent = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Sticky>
+      {/* </Sticky> */}
     </div>
 
   );
