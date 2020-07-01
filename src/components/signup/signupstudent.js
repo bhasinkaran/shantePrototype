@@ -110,6 +110,11 @@ const SignUpStudent = () => {
           key: 3,
           text: "Senior",
           value: "Senior"
+        },
+        {
+          key: 4,
+          text: "N.A.",
+          value: "N.A."
         }];
   const races = [
           {
@@ -149,7 +154,7 @@ const SignUpStudent = () => {
           }
         ];
   const genders = [
-    [
+    
       {
         key:0,
         text: "Male",
@@ -165,7 +170,7 @@ const SignUpStudent = () => {
         text: "Prefer not to disclose",
         value: "Prefer not to disclose"
       }
-    ]
+  
   ]
 
 
@@ -282,6 +287,18 @@ const SignUpStudent = () => {
               </Form.Group>
             </Form>
           </Grid.Row>
+          
+          <Grid.Row>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Form.Input
+                  required={true}
+                  onChange={(e) => { setPassword(e.target.value) }}
+                  label='Password:'
+                />
+              </Form.Group>
+            </Form>
+          </Grid.Row>
           <Grid.Row>
             <Form size="large">
               <Form.Group widths='equal'>
@@ -291,17 +308,6 @@ const SignUpStudent = () => {
                         setImage(e.target.files[0]) }}
                   label='Profile Picture:'
                   type="file"
-                />
-              </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Form.Input
-                  required={true}
-                  onChange={(e) => { setPassword(e.target.value) }}
-                  label='Password:'
                 />
               </Form.Group>
             </Form>
@@ -360,7 +366,7 @@ const SignUpStudent = () => {
           <Grid.Row>
           <Form>
         <Form.Field>
-          Are You Currently In High School?
+          <Header as ={'h4'}>Are You Currently In High School?</Header>
         </Form.Field>
         <Form.Field>
           <Checkbox
