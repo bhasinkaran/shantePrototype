@@ -3,13 +3,12 @@ import { Header, Checkbox, Card, Container, Segment, Sticky, Grid, Input, GridRo
 import { Button, Form, Icon, Image, List, Label, Transition, Modal, Dropdown} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { Loader, Dimmer } from 'semantic-ui-react';
-import { dbStudents } from '../../firebase/firebase';
+import { dbStudents, dbHSCounselors } from '../../firebase/firebase';
 import {InfoContext} from '../../App'
 import storage from '../../firebase/firebase'
 
-const SignUpStudent = () => {
-        const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
-
+const SignUpHSCounselor = () => {
+  const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
   const contextRef = createRef();
   const [firstName, setFirstName] = useState(null);
   const [username, setUsername] = useState(null);
@@ -18,15 +17,8 @@ const SignUpStudent = () => {
   const [url, setUrl]=useState("");
   const [lastName, setLastName] = useState(null);
   const [phone, setPhone] = useState(null);
+  const [highSchool, setHighSchool]=useState(null);
   const[state, setState]=useState("");
-  const [highschoolbool, setHSBool]=useState(null);
-  const[currentgrade, setCurrentGrade]=useState(null);
-  const[gradyear, setGradYear]=useState(null);
-  const[birthday, setBirthday]=useState(null);
-  const[race,setRace]=useState(null);
-  const[gender,setGender]=useState(null);
-  const[address,setAddress]=useState(null);
-  const[fosterParent, setFosterParent] = useState(null);
   const Frequency_Array = [
         {
           key: 0,
@@ -90,84 +82,6 @@ const SignUpStudent = () => {
                 text:"Wisconsin"
         }
       ]
-  const grades = [
-        {
-          key: 0,
-          text: "Freshman",
-          value: "Freshman"
-        },
-        {
-          key: 1,
-          text: "Sophomore",
-          value: "Sophomore"
-        },
-        {
-          key: 2,
-          text: "Junior",
-          value: "Junior"
-        },
-        {
-          key: 3,
-          text: "Senior",
-          value: "Senior"
-        }];
-  const races = [
-          {
-            key: 0,
-            text: "Black or African American",
-            value: "Black or African American"
-          },
-          {
-            key: 1,
-            text: "American Indian or Alaskan Native",
-            value: "American Indian or Alaskan Native"
-          },
-          {
-            key: 2,
-            text: "Asian",
-            value: "Asian"
-          },
-          {
-            key: 3,
-            text: "Hispanic or Latino",
-            value: "Hispanic or Latino"
-          },
-          {
-            key: 4,
-            text: "Native Hawaiian or Other Pacific Islands",
-            value: "Native Hawaiian or Other Pacific Islands"
-          },
-          {
-            key: 5,
-            text: "White",
-            value: "White"
-          },
-          {
-            key: 6,
-            text: "Other",
-            value: "Other"
-          }
-        ];
-  const genders = [
-    [
-      {
-        key:0,
-        text: "Male",
-        value: "Male"
-      },
-      {
-        key:1,
-        text: "Female",
-        value: "Female"
-      },
-      {
-        key:2,
-        text: "Prefer not to disclose",
-        value: "Prefer not to disclose"
-      }
-    ]
-  ]
-
 
 
   function WriteFirebase() {
@@ -178,19 +92,14 @@ const SignUpStudent = () => {
         'password': password,
         "state": state,
         "phone": phone,
-        "birthday": birthday,
-        "race":race,
-        "gender":gender,
-        "address":address,
-        "fosterParent":fosterParent,
         "pioneerform":false,
           "url":url
         }
-        const k = dbStudents.update({
+        const k = dbHSCounselors.update({
                 [username]:data
         });
       
-      const uploadTask = storage.ref(`students/${username}`).put(image);
+      const uploadTask = storage.ref(`hscounselors/${username}`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -208,7 +117,7 @@ const SignUpStudent = () => {
           .child(username)
           .getDownloadURL()
           .then(url => {
-           dbStudents.child(username).update({
+                dbHSCounselors.child(username).update({
                    "url":url
            });
           });
@@ -325,91 +234,13 @@ const SignUpStudent = () => {
             </Form.Group>
             </Form>
           </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Race:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={races}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setRace(value)}
-                                upward={false}>
-            </Dropdown>
-            </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Gender:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={genders}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setGender(value)}
-                                upward={false}>
-            </Dropdown>
-            </Form.Group>
-            </Form>
-          </Grid.Row>
-          <Grid.Row>
-          <Form>
-        <Form.Field>
-          Are You Currently In High School?
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            radio
-            label='Yes'
-            name='checkboxRadioGroup'
-            value='Yes'
-            checked={highschoolbool==='Yes'}
-            onChange={(e,{value})=>setHSBool({value})}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            radio
-            label='No'
-            name='checkboxRadioGroup'
-            value='No'
-            checked={highschoolbool === 'No'}
-            onChange={(e,{value})=>setHSBool({value})}
-          />
-        </Form.Field>
-      </Form>
-          </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Current Grade:" />
-          </Grid.Row>
-          <Grid.Row style={{marginTop:"-23px"}}>
-            <Form size="large">
-              <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
-                                options={grades}
-                                selection
-                                scrolling
-                                placeholder='Select'
-                                onChange={(e, { value }) => setCurrentGrade(value)}
-                                upward={false}>
-            </Dropdown>
-            </Form.Group>
-            </Form>
-          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={6}>
               <Button circular
                 compact
                 fluid
                 as={ isValid() ? Link : Button}
-                to={isValid() ? `/student` : '/'}
+                to={isValid() ? `/hscounselor` : '/'}
                 color='blue'
                 icon
                 onClick={() => WriteFirebase()}
@@ -436,4 +267,4 @@ const SignUpStudent = () => {
   
 }
 
-export default SignUpStudent;
+export default SignUpHSCounselor;

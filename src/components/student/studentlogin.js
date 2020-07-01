@@ -7,7 +7,7 @@ const StudentLogin = () => {
   const [error, setError] = useState(false);
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
-  const {user, setUser, studentLogged, setStudentLogged, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
+  const {user, setUser, logged, setLogged, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
 
 
   const contextRef = createRef();
@@ -16,7 +16,7 @@ const StudentLogin = () => {
     console.log(pass)
     if (students[username]) {
       if (students[username]["password"] === pass) {
-        setStudentLogged(true);
+        setLogged("student");
         setUser(username);
       }
     }
@@ -27,7 +27,7 @@ const StudentLogin = () => {
   }
 
   function redirect() {
-     if (studentLogged == true) {
+     if (logged == "student") {
       return  <Redirect to={`/student`} push={true} />
     }
   }

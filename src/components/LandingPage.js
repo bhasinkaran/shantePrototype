@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import {
   Button,
   Container,
@@ -54,7 +55,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
+    <Button as={Link} to={'/student/login'} primary size='huge'>
       Continue as Student
       <Icon name='right arrow' />
       </Button>

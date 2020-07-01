@@ -23,18 +23,22 @@ function App() {
   const [coaches, setCoaches]=useState("");
   const [chats, setChats]=useState("");
   const [user, setUser]=useState("");
-  const [studentLogged, setStudentLogged] = useState(false);
+  // const [studentLogged, setStudentLogged] = useState(false);
+  const [logged,setLogged]=useState("");
 
   React.useEffect(()=>{
     if(user){
       localStorage.setItem('user',user);
+      localStorage.setItem('logged', logged);
     }
    
-  }, [user]);
+  }, [user, logged]);
   React.useEffect(()=>{
     const data = localStorage.getItem('user');
+    const data2=localStorage.getItem('logged');
     if(data){
       setUser(data);
+      setLogged(data2);
     }
   }, []);
   
@@ -95,7 +99,7 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, setUser, studentLogged, setStudentLogged, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
+      <InfoContext.Provider value={{user, setUser, logged, setLogged, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
       
       {/* Student Pages */}
