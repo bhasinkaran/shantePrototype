@@ -30,15 +30,15 @@ const PageHeader = () => {
             </Grid.Column>
           <Grid.Column width={1}>
             <Button.Group>
-            <Button onClick={()=>setRedirectHome(true)} inverted icon='home' color ='black' >
+            <Button onClick={()=>setRedirectHome(true)} inverted icon='home' color ='purple' >
             </Button>
-            <Button onClick={()=>setRedirectSettings(true)} inverted icon='settings' color ='black' >
+            <Button onClick={()=>setRedirectSettings(true)} inverted icon='settings' color ='purple' >
             </Button>
             <Button inverted onClick={()=>{
               setRedirectLogout(true);
               setUser("");
               setLogged("");
-            }} icon='arrow left' color ='black' >
+            }} icon='arrow left' color ='purple' >
               Logout
             </Button>
             </Button.Group>
