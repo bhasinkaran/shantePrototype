@@ -27,13 +27,7 @@ function App() {
   // const [studentLogged, setStudentLogged] = useState(false);
   const [logged,setLogged]=useState("");
 
-  React.useEffect(()=>{
-    if(user){
-      localStorage.setItem('user',user);
-      localStorage.setItem('logged', logged);
-    }
-   
-  }, [user, logged]);
+
   React.useEffect(()=>{
     const data = localStorage.getItem('user');
     const data2=localStorage.getItem('logged');
@@ -42,6 +36,13 @@ function App() {
       setLogged(data2);
     }
   }, []);
+  React.useEffect(()=>{
+    // if(user){
+      localStorage.setItem('user',user);
+      localStorage.setItem('logged', logged);
+    // }
+   
+  }, [user, logged]);
   
   useEffect(() => {
     const handleData = snap => {

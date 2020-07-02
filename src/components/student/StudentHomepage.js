@@ -7,7 +7,7 @@ import {Router , useParams} from  'react-router-dom';
 import PageHeader from '../PageHeader'
 import {InfoContext}from '../../App'
 import UpcomingDeadlines from './UpcomingDeadlines'
-
+import WelcomeGreeting from './homepage/welcomegreeting'
 const StudentHomePage=()=>{
         const {user, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
         const [wait, setWait]=useState(true);
@@ -25,14 +25,7 @@ const StudentHomePage=()=>{
                                         </Grid.Row>
                                         <Divider />
                                         <Grid.Row>
-                                                <Header  textAlign="center" as="h3" >How are you doing today?</Header>
-                                                <Button.Group size='small'>
-                                                <Button color="brown">Not Too Good</Button>
-                                                 <Button.Or />
-                                                <Button color="orange">Just Fine</Button>
-                                                <Button.Or />
-                                                <Button color="green">Pretty Great</Button>
-                                                </Button.Group>
+                                              <WelcomeGreeting />
                                         </Grid.Row>
 
                                          <Grid.Row>
