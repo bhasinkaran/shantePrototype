@@ -206,8 +206,8 @@ const Majors = [
         },
         {
                 key: 12,
-                value:"Computer Science",
-                text:"Computer Science"
+                value:"Computer Engineering",
+                text:"Computer Engineering"
         },
         {
                 key: 13,

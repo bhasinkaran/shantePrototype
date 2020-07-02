@@ -8,6 +8,7 @@ import PageHeader from '../PageHeader'
 import {InfoContext}from '../../App'
 import UpcomingDeadlines from './UpcomingDeadlines'
 import WelcomeGreeting from './homepage/welcomegreeting'
+import ReleventColleges from './homepage/releventcolleges'
 const StudentHomePage=()=>{
         const {user, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
         const [wait, setWait]=useState(true);
@@ -34,7 +35,10 @@ const StudentHomePage=()=>{
 
                                         </Grid.Row> 
                                 </Grid.Column> 
-                                <Grid.Column width={9}></Grid.Column>
+                                <Grid.Column width={9}>
+                                <ReleventColleges />
+                                </Grid.Column>
+                               
                                 <Grid.Column width={3}>
                                                 <Grid.Row>
 
