@@ -47,7 +47,10 @@ const StudentHomePage=()=>{
 
                                                  </Grid.Row>
                                                  <Divider></Divider>
-                                                 {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> : 
+                                                 {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> 
+                                                
+                                                
+                                                : 
                                                         <div>
                                                          <Header textAlign="center" style={{marginTop:"-10px"}} color='violet' as="h4"> None Upcoming.</Header>
                                                          <Button>
