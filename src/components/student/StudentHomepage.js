@@ -9,14 +9,17 @@ import {InfoContext}from '../../App'
 import UpcomingDeadlines from './UpcomingDeadlines'
 import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
+import ModalDeadline from './homepage/CreateDeadline'
 const StudentHomePage=()=>{
         const {user, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
         const [wait, setWait]=useState(true);
+        const [open, setOpen]=useState(false);
         setTimeout(()=>setWait(false), 10000)
         // useEffect(()=>console.log("It changed"), [students]);
        if(user && students && students[user])
         return(<div>
                 <Container>
+                <ModalDeadline open={open} setOpen={setOpen}/>
                         <Grid centered padded>
                                 <Grid.Column width={4}>
                                         <Grid.Row>
@@ -36,7 +39,7 @@ const StudentHomePage=()=>{
                                         </Grid.Row> 
                                 </Grid.Column> 
                                 <Grid.Column width={9}>
-                                <ReleventColleges />
+                                        <ReleventColleges />
                                 </Grid.Column>
                                
                                 <Grid.Column width={3}>
@@ -47,16 +50,17 @@ const StudentHomePage=()=>{
 
                                                  </Grid.Row>
                                                  <Divider></Divider>
-                                                 {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> 
+                                                 {students[user]['deadlines'] ? <UpcomingDeadlines /> 
                                                 
                                                 
                                                 : 
                                                         <div>
                                                          <Header textAlign="center" style={{marginTop:"-10px"}} color='violet' as="h4"> None Upcoming.</Header>
-                                                         <Button>
+                                                        
+                                                         </div>}
+                                                         <Button onClick={()=>setOpen(true)}>
                                                                  Register a new deadline.
                                                          </Button>
-                                                         </div>}
 
                                 </Grid.Column>           
                         </Grid>
