@@ -26,8 +26,8 @@ const ReturnCollege=({college, hashmap})=>{
                         <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
                 </Grid.Column>
                 <Grid.Column width={10}>
-                       <Header style={{marginTop:"-5px"}} >{college.name}</Header>
-                       <Header style={{marginTop:"-10px"}} >{college.targetlocations}</Header>
+                       <Header color='teal' style={{marginTop:"-5px"}} >{college.name}</Header>
+                       <Header color='violet' style={{marginTop:"-10px"}} >{college.targetlocations}</Header>
                         <Header style={{marginTop:"-5px"}} as="h4">Overlapping Areas of Study</Header>
                        {commonmajors.map(major=>  <Header as={'h5'} style={{marginTop:"-10px"}}>{major}</Header>)}
                 </Grid.Column>

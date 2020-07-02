@@ -42,12 +42,18 @@ const StudentHomePage=()=>{
                                 <Grid.Column width={3}>
                                                 <Grid.Row>
 
-                                                        <Header as="h3" > Upcoming Deadlines</Header>
-                                                        <Header as="h5" style={{marginTop:"-20px"}} >One step closer to your goals.</Header>
+                                                        <Header as="h2" textAlign="center" color='teal' > Upcoming Deadlines</Header>
+                                                        <Header as="h5" textAlign="center" style={{marginTop:"-10px"}}> One step closer to your goals.</Header>
 
                                                  </Grid.Row>
                                                  <Divider></Divider>
-                                                 {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> : <Header as="h4"> None Upcoming.</Header>}
+                                                 {students[user]['upcomingDeadlines'] ? <UpcomingDeadlines /> : 
+                                                        <div>
+                                                         <Header textAlign="center" style={{marginTop:"-10px"}} color='violet' as="h4"> None Upcoming.</Header>
+                                                         <Button>
+                                                                 Register a new deadline.
+                                                         </Button>
+                                                         </div>}
 
                                 </Grid.Column>           
                         </Grid>
