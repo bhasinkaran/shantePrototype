@@ -1,7 +1,7 @@
 import {Redirect} from 'react-router-dom'
 import _ from 'lodash'
 import React, {useState, useEffect, useContext} from 'react';
-import {Container, Header, Divider, Grid, Loader, Button} from 'semantic-ui-react'
+import {Container, Header, Divider, Grid, Loader, Button, Image} from 'semantic-ui-react'
 import {Router , useParams} from  'react-router-dom';
 
 import PageHeader from '../PageHeader'
@@ -19,6 +19,8 @@ const StudentHomePage=()=>{
                         <Grid centered padded>
                                 <Grid.Column width={4}>
                                         <Grid.Row>
+                                                <Image src={students[user]['url']} size='small' centered circular/>
+
                                                 <Header  textAlign="center" as="h2" > Welcome, {students[user]['firstName']}</Header>
                                                 <Header textAlign="center" style={{marginTop:"-20px"}} as="h4" > {students[user]['state']}</Header>
 
@@ -32,12 +34,12 @@ const StudentHomePage=()=>{
 
                                         </Grid.Row> 
                                 </Grid.Column> 
-                                <Grid.Column width={6}></Grid.Column>
-                                <Grid.Column width={6}>
+                                <Grid.Column width={9}></Grid.Column>
+                                <Grid.Column width={3}>
                                                 <Grid.Row>
 
-                                                        <Header as="h2" > Upcoming Deadlines</Header>
-                                                        <Header as="h4" style={{marginTop:"-20px"}} >One step closer to your goals.</Header>
+                                                        <Header as="h3" > Upcoming Deadlines</Header>
+                                                        <Header as="h5" style={{marginTop:"-20px"}} >One step closer to your goals.</Header>
 
                                                  </Grid.Row>
                                                  <Divider></Divider>
