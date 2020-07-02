@@ -1,81 +1,82 @@
 import React, { useState, useContext, createRef, useEffect } from 'react';
 import { Header, Checkbox, Card, Container, Segment, Sticky, Grid, Input, GridRow, Divider, GridColumn } from 'semantic-ui-react';
 import { Button, Form, Icon, Image, List, Label, Transition, Modal, Dropdown} from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Loader, Dimmer } from 'semantic-ui-react';
-import { dbStudents } from '../../firebase/firebase';
+import { dbStudents, dbCoaches, dbColleges } from '../../firebase/firebase';
 import {InfoContext} from '../../App'
 import storage from '../../firebase/firebase'
 
 const PioneerForm = () => {
   const {user, setUser, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
   const contextRef = createRef();
+  const [name, setName]=useState("");
   const [targetmajors, setTargetMajors] = useState([]);
   const [targettuition, setTargetTuition] = useState(null);
-  const [targetlocations, setTargetLocations] = useState([]);
-  const [content, setContent]=useState([]);
+  const [targetlocations, setTargetLocations] = useState("");
   const[typeSchool, setTypeSchool]=useState("");
   const [aid, setAid] = useState(null);
+  const [redirect, setRedirect]=useState(false);
   const Tuitionrange = [
         {
           key: 0,
           text: "0-10,000",
-          value: "0-10,000"
+          value: "10,000"
         },
         {
           key: 1,
           text: "10,000-15,000",
-          value: "10,000-15,000"
+          value: "15,000"
         },
         {
           key: 2,
           text: "15,000-20,000",
-          value: "15,000-20,000"
+          value: "20,000"
         },
         {
           key: 3,
           text: "20,000-25,000",
-          value: "20,000-25,000"
+          value: "25,000"
           
         },
         {
           key:4,
           text: "25,000-30,000",
-          value: "25,000-30,000"
+          value: "30,000"
         },
         {
                 key:5,
                 text:"30,000-35,000",
-                value:"30,000-35,000"
+                value:"35,000"
         },
         {
                 key: 6,
                 text:"35,000-40,000",
-                value:"35,000-40,000"
+                value:"40,000"
         },
         {
                 key: 7,
                 text: "40,000-45,000",
-                value:"40,000-45,000"
+                value:"45,000"
         },
         {
                 key: 8,
                 text: "45,000-50,000",
-                value: "45,000-50,000"
+                value: "50,000"
         },
         {
                 key: 9,
                 text:"50,000-55,000",
-                value:"50,000-55,000"
+                value:"55,000"
         },
         {
                 key: 10,
                 value:"55,000-60,000",
-                text:"55,000-60,000"
+                text:"60,000"
         },
         {
                 key: 11,
-                value:"60,000+",
+                value:"65,000",
                 text:"60,000+"
         }
       ]
@@ -201,8 +202,8 @@ const Majors = [
         },
         {
                 key: 11,
-                value:"Computer Science",
-                text:"Computer Science"
+                value:"Computer Engineering",
+                text:"Computer Engineering"
         },
         {
                 key: 12,
@@ -325,27 +326,27 @@ const Majors = [
 
 
   function WriteFirebase() {
-    if(isValid() && user){
+          console.log(isValid())
+          console.log(name)
+          console.log(!colleges[name])
+
+    if(isValid() && name && !colleges[name]){
         const data={
         "targetmajors":targetmajors,
         "targetlocations": targetlocations,
         "pioneerform":true,
-        "aid":aid, 
-        "type":typeSchool
-
+        "tuition":targettuition,
+        "aid":aid,
+        "name": name,
+        "type":typeSchool,
         }
-                dbStudents.child(user).child("targetmajors").set( targetmajors);
-                dbStudents.child(user).child("targetlocations").set( targetlocations);
-                dbStudents.child(user).child("targettuition").set( targettuition);
-                dbStudents.child(user).child("pioneerform").set(true);
-                dbStudents.child(user).child("type").set(typeSchool);
-
-
-
-
+                dbColleges.update({
+                        [name]: data
+                });
         ;
 
     console.log("Wrote Name and phone onto firebase!");
+        setRedirect(true);
       }
     else{
       alert("Please select at least one option from the lists below.")
@@ -353,50 +354,67 @@ const Majors = [
 
   }
    function isValid(){
-     var x=(targetlocations.length>0&&targetmajors.length>0 && targettuition)
+     var x=(targetlocations&&targetmajors.length>0 && targettuition && typeSchool)
+     console.log(targetlocations);
+     console.log(targetmajors.length)
+     console.log( targettuition)
+     console.log(typeSchool)
      return (x)
     
     }
-  return (
+  if(!redirect)
+  {return (
     <div ref={contextRef}>
       <Sticky context={contextRef} >
         <Divider hidden />
         <Divider hidden />
         <Divider hidden />
         <Grid padded textAlign="center">
-        <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Prospective Majors:" />
+        <Grid.Row style={{marginTop:"-23px"}}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+              <Form.Input fluid label='Name of school/college'             required={true}
+onChange={(e) => { setName(e.target.value) }}  placeholder='Enter' />
+            </Form.Group>
+            </Form>
           </Grid.Row>
+        {/* <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Majors offered in college/program:" />
+          </Grid.Row> */}
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Form.Select pointing="bottom"
                                 options={Majors}
                                 selection
+                                label="Majors offered in college/program:"
                                 scrolling
                                 multiple
                                 placeholder='Select'
                                 onChange={(e, { value }) => 
                                                setTargetMajors(value)}
                                 upward={false}>
-            </Dropdown>
+            </Form.Select>
             </Form.Group>
             </Form>
           </Grid.Row>
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Upper Limit on Tuition Range:" />
-          </Grid.Row>
+          {/* <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Tuition of college/program:" />
+          </Grid.Row> */}
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Form.Select pointing="bottom"
                                 options={Tuitionrange}
                                 selection
                                 scrolling
+                                label="Tuition of college/program:"
                                 placeholder='Select Upper Limit for Tuition'
-                                onChange={(e, { value }) => setTargetTuition(value)}
+                                onChange={(e, { value }) => {
+                                        setTargetTuition(value)
+                                }}
                                 upward={false}>
-            </Dropdown>
+            </Form.Select>
             </Form.Group>
             </Form>
           </Grid.Row>
@@ -404,7 +422,7 @@ const Majors = [
             <Form size="large">
               
         <Form.Group inline required={true}>
-          <label>Do you prefer institutions or schools that offer need-based financial aid?</label>
+          <label>Does this college/program offer need-based financial aid?</label>
           <Form.Radio
             label='Yes'
             value='Yes'
@@ -423,38 +441,41 @@ const Majors = [
             </Form>
           </Grid.Row>
           
-          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
-            <Header as="h4" content="Preferred Locations for Colleges:" />
-          </Grid.Row>
+          {/* <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Location of college:" />
+          </Grid.Row> */}
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Form.Select pointing="bottom"
                                 options={Locations}
                                 selection
                                 scrolling
-                                multiple
+                                label="Location of college:"
                                 placeholder='Select'
                                 onChange={(e, { value }) => 
                                                setTargetLocations(value)}
                                 upward={false}>
-            </Dropdown>
+            </Form.Select>
             </Form.Group>
             </Form>
           </Grid.Row>
+          {/* <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Type of college/school:" />
+          </Grid.Row> */}
           <Grid.Row style={{marginTop:"-23px"}}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Form.Select pointing="bottom"
                                 options={types}
                                 selection
+                                label="Type of college/school:"
                                 scrolling
-                                multiple
                                 placeholder='Select'
                                 onChange={(e, { value }) => 
                                                setTypeSchool(value)}
                                 upward={false}>
-            </Dropdown>
+            </Form.Select>
             </Form.Group>
             </Form>
           </Grid.Row>
@@ -463,8 +484,7 @@ const Majors = [
               <Button circular
                 compact
                 fluid
-                as={ isValid() ? Link : Button}
-                to={isValid() ? `/student` : '/'}
+                as={Button}
                 color='blue'
                 icon
                 onClick={() => WriteFirebase()}
@@ -485,10 +505,17 @@ const Majors = [
         </Grid>
       </Sticky>
     </div>
+    
 
   );
 
   
+        }
+        else{
+               return(<Redirect to="/register/college" push={true} />);
+
+        }
+
 }
 
 export default PioneerForm;
