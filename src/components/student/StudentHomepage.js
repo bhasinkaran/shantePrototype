@@ -20,7 +20,7 @@ const StudentHomePage=()=>{
                         <Grid centered padded>
                                 <Grid.Column width={4}>
                                         <Grid.Row>
-                                                <Image src={students[user]['url']} size='small' centered circular/>
+                                                <Image src={students[user]['url']} size='tiny' centered circular/>
 
                                                 <Header  textAlign="center" as="h2" > Welcome, {students[user]['firstName']}</Header>
                                                 <Header textAlign="center" style={{marginTop:"-20px"}} as="h4" > {students[user]['state']}</Header>

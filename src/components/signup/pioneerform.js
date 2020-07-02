@@ -75,7 +75,7 @@ const PioneerForm = () => {
         },
         {
                 key: 11,
-                value:"60,000+",
+                value:"65,000",
                 text:"60,000+"
         }
       ]

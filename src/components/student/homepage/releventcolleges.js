@@ -18,6 +18,15 @@ const ReleventColleges=()=>{
                                majorMatch=true;
                        }
                } 
+               console.log(college.name)
+               console.log(college.tuition);
+               console.log(students[user].targettuition)
+
+        //        console.log(tuitionMatch);
+        //        console.log(locationMatch);
+        //        console.log(majorMatch);
+
+
                return tuitionMatch&&locationMatch&&majorMatch;
         }
         useEffect(()=>{
