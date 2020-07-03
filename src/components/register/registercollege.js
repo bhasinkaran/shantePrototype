@@ -372,7 +372,7 @@ const PioneerForm = () => {
                                 "about": about,
                                 "hsgpabool": hsgpabool,
                                 "avgfinancialaid": avgfinancialaid,
-                                "proprtiononaid": proportionofstudentsonaid,
+                                "proportiononaid": proportionofstudentsonaid,
                                 "lat": lat,
                                 "long": long,
                                 "logopic": linktologo,
