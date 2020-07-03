@@ -33,7 +33,7 @@ const ReleventColleges = () => {
                 //        console.log(majorMatch);
 
 
-                return tuitionMatch && locationMatch && majorMatch;
+                return tuitionMatch && locationMatch;
         }
         useEffect(() => {
                 setMatched(Object.values(colleges).filter(college => isMatch(college)));

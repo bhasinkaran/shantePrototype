@@ -339,6 +339,7 @@ const Majors = [
                 dbStudents.child(user).child("targettuition").set( targettuition);
                 dbStudents.child(user).child("pioneerform").set(true);
                 dbStudents.child(user).child("type").set(typeSchool);
+                dbStudents.child(user).child("aid").set(aid);
 
 
 

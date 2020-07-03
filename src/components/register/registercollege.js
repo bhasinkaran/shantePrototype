@@ -25,6 +25,10 @@ const PioneerForm = () => {
         const [aid, setAid] = useState(null);
         const [redirect, setRedirect] = useState(false);
         const [avgfinancialaid, setavgfinancialaid] = useState("");
+        const [lat, setLat]=useState("");
+        const [long, setLong]=useState("");
+        const [linktologo, setlinktologo]=useState("");
+        const[linkcollegepic, setlinkcollegepic]=useState("");
         const [proportionofstudentsonaid, setProportion] = useState("");
         const Tuitionrange = [
                 {
@@ -356,7 +360,11 @@ const PioneerForm = () => {
                                 "about": about,
                                 "hsgpabool": hsgpabool,
                                 "avgfinancialaid": avgfinancialaid,
-                                "proprtiononaid": proportionofstudentsonaid
+                                "proprtiononaid": proportionofstudentsonaid,
+                                "lat": lat,
+                                "long": long,
+                                "logopic": linktologo,
+                                "collegepic": linkcollegepic
 
                         }
                         dbColleges.update({
@@ -403,6 +411,28 @@ const PioneerForm = () => {
                                                                 <Form.Group widths='equal' inline>
                                                                 <Form.Input label='About' required={true}
                                                                                 onChange={(e) => { setAbout(e.target.value) }} placeholder='Enter about information here' />
+                                                                
+                                                                </Form.Group>
+                                                        </Form>
+                                                </Grid.Row>
+                                                <Grid.Row style={{ marginTop: "-23px" }}>
+                                                        <Form size="large">
+                                                                <Form.Group widths='equal' inline>
+                                                                <Form.Input label='Lattitude of college location' required={true}
+                                                                                onChange={(e) => { setLat(e.target.value) }} placeholder='Enter as a number.' />
+                                                                 <Form.Input label='Longitude of college location' required={true}
+                                                                                onChange={(e) => { setLong(e.target.value) }} placeholder='Enter as a number.' />
+                                                                
+                                                                </Form.Group>
+                                                        </Form>
+                                                </Grid.Row>
+                                                <Grid.Row style={{ marginTop: "-23px" }}>
+                                                        <Form size="large">
+                                                                <Form.Group widths='equal' inline>
+                                                                <Form.Input label='Link to college logo picture' required={true}
+                                                                                onChange={(e) => { setlinktologo(e.target.value) }} placeholder='put link to image directly.' />
+                                                                 <Form.Input label='Link to college picture' required={true}
+                                                                                onChange={(e) => { setlinkcollegepic(e.target.value) }} placeholder='put link to image directly' />
                                                                 
                                                                 </Form.Group>
                                                         </Form>
@@ -462,9 +492,9 @@ const PioneerForm = () => {
                                                                 <Form.Input fluid label='Annual tuition in USD - Enter as Number (no $ symbol).' required={false}
                                                                                 onChange={(e) => { setTargetTuition(e.target.value) }} placeholder='' />
                                                                  <Form.Input fluid label='AVG Financial Aid - Enter as Number (no $ symbol)' required={false}
-                                                                                onChange={(e) => { setTargetTuition(e.target.value) }} placeholder='Enter as Number (no $ symbol).' />
+                                                                                onChange={(e) => { setavgfinancialaid(e.target.value) }} placeholder='Enter as Number (no $ symbol).' />
                                                                   <Form.Input fluid label='Proportion of students on aid (enter as numbers - enter 15 for 15% for example.' required={false}
-                                                                                onChange={(e) => { setTargetTuition(e.target.value) }} placeholder='Enter as Number (no $ symbol).' />
+                                                                                onChange={(e) => { setProportion(e.target.value) }} placeholder='Enter as Number (no $ symbol).' />
                                                                 </Form.Group>
                                                         </Form>
                                                 </Grid.Row>

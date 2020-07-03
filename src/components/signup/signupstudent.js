@@ -252,7 +252,8 @@ const SignUpStudent = () => {
         "race":race,
         "gender":gender,
         "pioneerform":false,
-          "url":url
+          "url":url,
+          "nameoffostercare":nameofFosterCare
         }
         const k = dbStudents.update({
                 [username]:data
