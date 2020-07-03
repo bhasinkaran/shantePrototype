@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Container, Header, Divider, Grid, Loader, Button, Image, Segment } from 'semantic-ui-react'
 import { Router, useParams, Link } from 'react-router-dom';
 import { InfoContext } from '../../App'
-
+import Imagee from './Imagee'
 const ReturnCollege = () => {
         const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const arrayColors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
@@ -16,58 +16,10 @@ const ReturnCollege = () => {
                 <Grid>
                         <Grid.Column width={4}>
                                 <Image size="huge" src={colleges[name].logopic}></Image>
+                                <Image src={colleges[name].collegepic}></Image>
                         </Grid.Column>
                         <Grid.Column width={12}>
-                                <Grid.Row>
-                                        
-                                        
-                                                 <img  src={colleges[name].collegepic}/>
-                                                
-
-                                        {/* <Image src={colleges[name].collegepic}></Image> */}
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row> 
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row> 
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row> 
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       Test
-                                </Grid.Row>
-                                <Grid.Row>
-                                       
-                                </Grid.Row>
-                                {/* <Divider>
-
-                                </Divider>
-                                <Divider>
-                                        
-                                </Divider>
-                                <Divider>
-                                        
-                                </Divider> */}
+                                <Imagee srcc={colleges[name].collegepic}/>
                                 <Grid.Row>
                                         <Grid.Column width={16}>
                                                 <Segment animated color={arrayColors[number]} raised>
