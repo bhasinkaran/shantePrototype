@@ -9,14 +9,14 @@ const WelcomeGreeting=()=>{
                 <div>
                 <Header  textAlign="center" as="h3" >How are you doing today?</Header>
                 <Grid>
-                        <Grid.Column width={1}>
+                        <Grid.Column width={4}>
 
                         </Grid.Column>
-                        <Grid.Column width={12}>
-                        <Button.Group style={{ali:"center"}} vertical  size='mini'>
-                <Button fluid color="brown">Not Too Good</Button>
-                <Button fluid color="orange">Just Fine</Button>
-                <Button  fluid color="green">Pretty Great</Button>
+                        <Grid.Column width={10}>
+                        <Button.Group style={{textAlign:"center"}} vertical  size='mini'>
+                <Button style={{textAlign:"center"}} fluid color="brown">Not Too Good</Button>
+                <Button style={{textAlign:"center"}} fluid color="orange">Just Fine</Button>
+                <Button style={{textAlign:"center"}}  fluid color="green">Pretty Great</Button>
                 </Button.Group>
                         </Grid.Column>
                         <Grid.Column width={2}>
