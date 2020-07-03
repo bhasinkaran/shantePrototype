@@ -61,7 +61,6 @@ const StudentHomePage=()=>{
                                                          <Button onClick={()=>setOpen(true)}>
                                                                  Register a new deadline.
                                                          </Button>
-
                                 </Grid.Column>           
                         </Grid>
                 </Container>

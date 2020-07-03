@@ -154,7 +154,19 @@ const PioneerForm = () => {
                         key: 11,
                         value: "Wisconsin",
                         text: "Wisconsin"
-                }
+                },
+                {
+                        key: 12,
+                        value: "North Carolina",
+                        text: "North Carolina"
+                },
+                {
+                        key: 13,
+                        value: "Georgia",
+                        text: "Georgia"
+                },
+                
+
         ]
         const Majors = [
                 {
