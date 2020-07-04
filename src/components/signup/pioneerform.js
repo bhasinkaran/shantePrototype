@@ -333,6 +333,50 @@ const PioneerForm = () => {
       value: "Trade School"
     }
   ]
+  const courses=[
+    {key:0,
+      text: "How I learn",
+      value: "How I lean"
+    },
+    {key: 1,
+      text: "Visual Storytelling",
+      value: "Visual Storytelling"
+    },
+    {key: 2,
+      text: "Career Paths in STEM",
+      value: "Career Paths in STEM"
+    },
+    {key: 3,
+      text: "Identifying Barriers to Self-Advocacy",
+      value: "Identifying Barriers to Self-Advocacy"
+    },
+    {key: 4,
+      text: "Navigating Differences",
+      value: "Navigating Differences"
+    },
+    {key: 5,
+      text: "Financial Literacy Pt. 1",
+      value: "Financial Literacy Pt. 1"
+    },
+    {key: 6,
+      text: "Network vs Networking",
+      value: "Network vs Networking"
+    },
+    {key: 7,
+      text: "Asking for Letters of Recommendation",
+      value: "Asking for Letters of Recommendation"
+    },
+    {
+      key: 8,
+      value: "Writing a Winning Personal Statement" ,
+      text: "Writing a Winning Personal Statement"
+    },
+    {
+      key: 9,
+      value: "Understanding Your Financial Aid Award Letter" ,
+      text: "Writing a Winning Personal Statement"
+    }
+  ]
 
 
   function WriteFirebase() {
@@ -351,6 +395,8 @@ const PioneerForm = () => {
       dbStudents.child(user).child("pioneerform").set(true);
       dbStudents.child(user).child("type").set(typeSchool);
       dbStudents.child(user).child("aid").set(aid);
+      dbStudents.child(user).child("content").set(content);
+
 
 
 
@@ -454,6 +500,9 @@ const PioneerForm = () => {
               </Form.Group>
             </Form>
           </Grid.Row>
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Preferred Type of Program:" />
+          </Grid.Row>
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
@@ -465,6 +514,25 @@ const PioneerForm = () => {
                   placeholder='Select'
                   onChange={(e, { value }) =>
                     setTypeSchool(value)}
+                  upward={false}>
+                </Dropdown>
+              </Form.Group>
+            </Form>
+          </Grid.Row>
+          <Grid.Row style={{ marginTop: "-15px", marginLeft: "-120px" }}>
+            <Header as="h4" content="Preferred Content for Courses:" />
+          </Grid.Row>
+          <Grid.Row style={{ marginTop: "-23px" }}>
+            <Form size="large">
+              <Form.Group widths='equal'>
+                <Dropdown pointing="bottom"
+                  options={courses}
+                  selection
+                  scrolling
+                  multiple
+                  placeholder='Select'
+                  onChange={(e, { value }) =>
+                    setContent(value)}
                   upward={false}>
                 </Dropdown>
               </Form.Group>
