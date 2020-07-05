@@ -13,6 +13,8 @@ import StudentLogin from './components/student/studentlogin';
 import PioneerForm from './components/signup/pioneerform';
 import RegisterCollege from './components/register/registercollege'
 import CollegeHomepage  from './components/college/collegehomepage'
+import RegisterCoach from './components/register/registercoach'
+
 
 export const InfoContext = React.createContext();
 
@@ -105,8 +107,9 @@ function App() {
       <InfoContext.Provider value={{user, setUser, logged, setLogged, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
 
-      {/* Register college */}
+      {/* Register */}
       <Route exact path="/register/college" render={()=> <RegisterCollege />}/>
+      <Route exact path="/register/coach" render={()=> <RegisterCoach />}/>
 
       
       {/* Student Pages */}

@@ -287,9 +287,7 @@ const SignUpStudent = () => {
           .child(username)
           .getDownloadURL()
           .then(url => {
-           dbStudents.child(username).update({
-                   "url":url
-           });
+           dbStudents.child(username).child("url").set(url);
           });
       }
     );
