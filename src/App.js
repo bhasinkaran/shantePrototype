@@ -13,6 +13,8 @@ import StudentLogin from './components/student/studentlogin';
 import PioneerForm from './components/signup/pioneerform';
 import RegisterCollege from './components/register/registercollege'
 import CollegeHomepage  from './components/college/collegehomepage'
+import Location  from './components/college/location'
+
 import RegisterCoach from './components/register/registercoach'
 
 
@@ -118,6 +120,7 @@ function App() {
       <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
       <Route exact path="/signup/student/pioneerform" render={()=> withMenu(<PioneerForm />)}/>
       <Route exact path="/college/:name" render={()=> withMenu(<CollegeHomepage />)}/>
+      <Route exact path="/test" render={()=> withMenu(<Location lat={51.505} long={-0.09} />)}/>
 
 
        {/* Coach Pages */}
