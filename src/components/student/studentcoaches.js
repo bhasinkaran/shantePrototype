@@ -13,10 +13,9 @@ import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/CreateDeadline'
 import CoachPreview from './CoachPreview'
 const StudentCoaches = () => {
-        const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);
+        const { user, students, hscounselors, collegecounselors, visible, setVisible ,colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const [wait, setWait] = useState(true);
         const [open, setOpen] = useState(false);
-        const [visible, setVisible] = useState(false)
         setTimeout(() => setWait(false), 10000)
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
@@ -44,6 +43,10 @@ const StudentCoaches = () => {
                                                 <Icon name='bolt' />
           Goals
         </Menu.Item>
+                                        <Menu.Item as={Link} to='/student/requests'>
+                                                <Icon name='question' />
+          Requests
+        </Menu.Item>
                                         <Menu.Item as={Link} to='/student/coaches'>
                                                 <Icon name='address card' />
           Coaches
@@ -68,7 +71,9 @@ const StudentCoaches = () => {
                                                                         :
                                                                         <div>
                                                                                 <Grid.Row>
-                                                                                        <Header>Find a coach that you'd like to reach out to!</Header>
+                                                                                        <Header as="h1" textAlign="center" color="black">You haven't paired up with a coach yet.</Header>
+                                                                                        <Header as="h1" style={{marginTop:"-13px"}} textAlign="center" color="violet">Find a coach that you'd like to reach out to!</Header>
+                                                                                        <Divider></Divider>
                                                                                         <Segment.Group compact>
                                                                                                 {Object.values(coaches).map(coach => <CoachPreview coach={coach} />)}
                                                                                         </Segment.Group>
@@ -76,7 +81,7 @@ const StudentCoaches = () => {
                                                                         </div>
                                                                 }
                                                         </Grid.Column>
-                                                        
+
                                                 </Grid>
                                         </Container>
                                 </Sidebar.Pusher>

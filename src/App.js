@@ -30,6 +30,7 @@ function App() {
   const [coaches, setCoaches]=useState("");
   const [chats, setChats]=useState("");
   const [user, setUser]=useState("");
+  const [visible, setVisible] = useState(false);
   // const [studentLogged, setStudentLogged] = useState(false);
   const [logged,setLogged]=useState("");
 
@@ -107,7 +108,7 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, setUser, logged, setLogged, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
+      <InfoContext.Provider value={{user, setUser, logged, setLogged, visible, setVisible, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
 
       {/* Register */}

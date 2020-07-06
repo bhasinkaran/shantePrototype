@@ -4,7 +4,7 @@ import { Link, Redirect} from 'react-router-dom';
 import {InfoContext} from '../App'
 
 const PageHeader = () => {
-  const {user, setUser,logged, setLogged, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
+  const {user, setUser,logged, setLogged, setVisible, visilbe, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
 
   const [redirectLogout, setRedirectLogout]=useState(false);
   const [redirectSettings, setRedirectSettings]=useState(false);
@@ -40,6 +40,11 @@ const PageHeader = () => {
               setLogged("");
             }} icon='arrow left' color ='purple' >
               Logout
+            </Button>
+            <Button inverted onClick={()=>{
+              setVisible(true);
+            }} color ='purple' >
+              Menu
             </Button>
             </Button.Group>
             {/* <Button inverted icon='arrow left' color ='black' >

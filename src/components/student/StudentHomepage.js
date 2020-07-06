@@ -12,10 +12,9 @@ import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/CreateDeadline'
 const StudentHomePage = () => {
-        const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);
+        const { user, students, hscounselors, collegecounselors, visible, setVisible, colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const [wait, setWait] = useState(true);
         const [open, setOpen] = useState(false);
-        const [visible, setVisible] = useState(false)
         setTimeout(() => setWait(false), 10000)
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
