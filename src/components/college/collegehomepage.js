@@ -5,6 +5,7 @@ import { Container, Header, Divider, Grid, Loader, Label, Button, Image, Segment
 import { Router, useParams, Link } from 'react-router-dom';
 import { InfoContext } from '../../App'
 import Imagee from './Imagee'
+import Location from './location'
 const ReturnCollege = () => {
         const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const arrayColors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
@@ -27,6 +28,21 @@ const ReturnCollege = () => {
                                                                 <Header textAlign="center" color='violet' style={{ marginTop: "-10px" }} as="h2" >{colleges[name].targetlocations}</Header>
 
                                                                 <Grid centered celled="internally" >
+                                                                        <Grid.Row>
+                                                                                <Grid.Column width={16}>
+                                                                                        <Header textAlign={"center"} color='violet' style={{ marginTop: "-5px" }} as="h3">About</Header>
+                                                                                        <Header textAlign={"center"} style={{ marginTop: "-5px" }} as="h3">{colleges[name].about}</Header>
+
+                                                                                </Grid.Column>
+
+                                                                        </Grid.Row>
+                                                                        {/* <Grid.Row>
+                                                                                <Grid.Column width={16}>
+                                                                                        <Header textAlign={"center"} color='violet' style={{ marginTop: "-5px" }} as="h3">Location</Header>
+                                                                                        <Location lat={colleges[name].lat} long={colleges[name].long} />
+                                                                                </Grid.Column>
+
+                                                                        </Grid.Row> */}
                                                                         <Grid.Row>
                                                                                 <Grid.Column width={5}>
                                                                                         <Header style={{ marginTop: "-5px" }} as="h3">Popular Areas of Study</Header>
@@ -69,14 +85,7 @@ const ReturnCollege = () => {
                                                                                         {colleges[name].aid ? <Header textAlign={"center"} style={{ marginTop: "-10px" }} as="h4">${colleges[name].avgfinancialaid} with  {`${colleges[name].proportionaid}`}% of students on aid </Header> : ""}
                                                                                 </Grid.Column>
                                                                         </Grid.Row>
-                                                                        <Grid.Row>
-                                                                                <Grid.Column width={16}>
-                                                                                        <Header textAlign={"center"} color='violet' style={{ marginTop: "-5px" }} as="h3">About</Header>
-                                                                                        <Header textAlign={"center"} style={{ marginTop: "-5px" }} as="h4">{colleges[name].about}</Header>
-
-                                                                                </Grid.Column>
-
-                                                                        </Grid.Row>
+                                                                       
                                                                 </Grid>
 
                                                         </Segment>
