@@ -16,6 +16,7 @@ import CollegeHomepage  from './components/college/collegehomepage'
 import Location  from './components/college/location'
 
 import RegisterCoach from './components/register/registercoach'
+import StudentCoaches from './components/student/studentcoaches';
 
 
 export const InfoContext = React.createContext();
@@ -117,6 +118,8 @@ function App() {
       {/* Student Pages */}
       <Route exact path="/student/login" render={()=> <StudentLogin />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
+      <Route exact path="/student/coaches" render={()=> withMenu(<StudentCoaches />)}/>
+
       <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
       <Route exact path="/signup/student/pioneerform" render={()=> withMenu(<PioneerForm />)}/>
       <Route exact path="/college/:name" render={()=> withMenu(<CollegeHomepage />)}/>
