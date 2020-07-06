@@ -57,7 +57,10 @@ const ModalDeadline = ({ open, setOpen}) => {
                                 <Button basic color='red' onClick={()=>setOpen(false)}>
                                         <Icon name='remove' /> Go Back
                                 </Button>
-                                <Button color='green' inverted onClick={()=>writeFirebase()}>
+                                <Button color='green' inverted onClick={()=>{
+                                        writeFirebase();
+                                        setOpen(false);
+                                        }}>
                                         <Icon name='checkmark' /> Finalize
                                 </Button>
                         </Modal.Actions>

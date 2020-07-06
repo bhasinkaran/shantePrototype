@@ -13,6 +13,7 @@ import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/Modals/CreateDeadline'
 import ModalGoal from './homepage/Modals/CreateGoal'
+import ModalRequest  from './homepage/Modals/CreateRequest'
 import SideBar from './Sidebar'
 
 const StudentHomePage = () => {
@@ -20,6 +21,7 @@ const StudentHomePage = () => {
         const [wait, setWait] = useState(true);
         const [open, setOpen] = useState(false);
         const [openGoal, setOpenGoal] = useState(false);
+        const [openRequest, setOpenRequest]=useState(false);
         setTimeout(() => setWait(false), 10000)
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
@@ -31,6 +33,7 @@ const StudentHomePage = () => {
                                 <Sidebar.Pusher>
                                         <ModalDeadline open={open} setOpen={setOpen} />
                                         <ModalGoal open={openGoal} setOpen={setOpenGoal} />
+                                        <ModalRequest open={openRequest} setOpen={setOpenRequest} />
 
                                         <Grid centered padded>
                                                 <Grid.Column width={4}>
@@ -89,6 +92,19 @@ const StudentHomePage = () => {
                                                         <Segment onClick={() => setOpenGoal(true)} inverted color='olive'>
                                                                 Create new goal.
                                                         </Segment>
+
+                                                        {/* NOW WE WILL ALLOW STUDENT TO CREATE A REQUEST */}
+                                                         <Grid.Row style={{ marginTop: "15px" }}>
+
+                                                                <Header as="h2" textAlign="center" color='teal' > Do you need help?</Header>
+                                                                {/* <Header as="h5" textAlign="center" style={{ marginTop: "-10px" }}></Header> */}
+
+                                                        </Grid.Row> 
+                                                        <Divider marginTop={"-15px"}></Divider>
+                                                        <Segment onClick={() => setOpenRequest(true)} inverted color='red'>
+                                                                Create new request.
+                                                        </Segment>
+
                                                 </Grid.Column>
                                         </Grid>
                                 </Sidebar.Pusher>
