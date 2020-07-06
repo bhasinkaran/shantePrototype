@@ -43,16 +43,16 @@ const StudentHomePage = () => {
                                                                 <Header textAlign="center" style={{ marginTop: "-20px" }} as="h4" > {students[user]['state']}</Header>
                                                         </Grid.Row>
                                                         <Divider />
-                                                        <Grid.Row>
+                                                        {/* <Grid.Row>
                                                                 <WelcomeGreeting />
-                                                        </Grid.Row>
+                                                        </Grid.Row> */}
 
                                                         <Grid.Row>
 
                                                         </Grid.Row>
                                                 </Grid.Column>
                                                 <Grid.Column width={9}>
-                                                        <ReleventColleges />
+                                                        <WelcomeGreeting />
                                                 </Grid.Column>
 
                                                 <Grid.Column width={3}>

@@ -27,11 +27,11 @@ const StudentCoaches = () => {
                                         <Container>
                                                 <Grid centered padded>
                                                         <Grid.Column>
-                                                                {students[user]['coaches'] ?
+                                                                {students[user]['coaches'] && coaches?
                                                                         <div>
                                                                                 <Grid.Row>
                                                                                         <Header>Your coaches</Header>
-                                                                                        {students[user]['coaches'].map(coach => <CoachPreview coach={coaches[coach]} />)}
+                                                                                        {Object.values(students[user]['coaches']).map(coach => <CoachPreview coach={coaches[coach]} />)}
                                                                                 </Grid.Row>
                                                                         </div>
 

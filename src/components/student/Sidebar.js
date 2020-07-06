@@ -40,6 +40,10 @@ Coaches
                 <Icon name='paper plane' />
 Colleges
 </Menu.Item>
+<Menu.Item onClick={()=>setTimeout(() => setVisible(false), 500)} >
+                <Icon name='paper plane' />
+Milestones
+</Menu.Item>
 </Sidebar>
 }
 export default SideBar;
