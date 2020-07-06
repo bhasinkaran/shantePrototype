@@ -33,6 +33,10 @@ function App() {
   const [visible, setVisible] = useState(false);
   // const [studentLogged, setStudentLogged] = useState(false);
   const [logged,setLogged]=useState("");
+  const [sidebool, setSideBool] = useState(false);
+  React.useEffect(()=>{
+    setVisible(false);
+  }, [sidebool])
 
 
   React.useEffect(()=>{
@@ -108,7 +112,7 @@ function App() {
           </div>)}
   return (
     <BrowserRouter>
-      <InfoContext.Provider value={{user, setUser, logged, setLogged, visible, setVisible, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
+      <InfoContext.Provider value={{user, setUser, logged, setLogged, visible, setVisible, sidebool, setSideBool, students, hscounselors, collegecounselors, colleges, messages, coaches, chats}} >
       <Route exact path="/" render={()=> <HomepageLayout />}/>
 
       {/* Register */}

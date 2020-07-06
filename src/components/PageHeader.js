@@ -4,7 +4,7 @@ import { Link, Redirect} from 'react-router-dom';
 import {InfoContext} from '../App'
 
 const PageHeader = () => {
-  const {user, setUser,logged, setLogged, setVisible, visilbe, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
+  const {user, setUser,logged, setLogged, setVisible, visible, sidebool, setSideBool, students,hscounselors, collegecounselors, colleges, messages, coaches, chats} = React.useContext(InfoContext);
 
   const [redirectLogout, setRedirectLogout]=useState(false);
   const [redirectSettings, setRedirectSettings]=useState(false);

@@ -12,6 +12,7 @@ import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/CreateDeadline'
 import CoachPreview from './CoachPreview'
+import SideBar from './Sidebar'
 const StudentCoaches = () => {
         const { user, students, hscounselors, collegecounselors, visible, setVisible ,colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const [wait, setWait] = useState(true);
@@ -20,42 +21,8 @@ const StudentCoaches = () => {
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
                 return (<div>
-                        <Sidebar.Pushable as={Segment}>
-                                <Sidebar
-                                        as={Menu}
-                                        animation='overlay'
-                                        icon='labeled'
-                                        inverted
-                                        onHide={() => setVisible(false)}
-                                        vertical
-                                        visible={visible}
-                                        width='thin'
-                                >
-                                        <Menu.Item as='a'>
-                                                <Icon name='home' />
-          Home
-        </Menu.Item>
-                                        <Menu.Item as={Link} to='/student/profile'>
-                                                <Icon name='street view' />
-          Profile
-        </Menu.Item>
-                                        <Menu.Item as={Link} to='/student/goals'>
-                                                <Icon name='bolt' />
-          Goals
-        </Menu.Item>
-                                        <Menu.Item as={Link} to='/student/requests'>
-                                                <Icon name='question' />
-          Requests
-        </Menu.Item>
-                                        <Menu.Item as={Link} to='/student/coaches'>
-                                                <Icon name='address card' />
-          Coaches
-        </Menu.Item>
-                                        <Menu.Item as={Link} to='/student/colleges'>
-                                                <Icon name='paper plane' />
-          Colleges
-        </Menu.Item>
-                                </Sidebar>
+                        <Sidebar.Pushable as={Segment} style={{innerHeight:"100vh"}}>
+                                <SideBar />
                                 <Sidebar.Pusher>
                                         <Container>
                                                 <Grid centered padded>
