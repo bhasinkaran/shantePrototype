@@ -3,19 +3,22 @@ import _ from 'lodash'
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Header, Divider, Grid, Loader, Button, Image , Modal, Icon, Input} from 'semantic-ui-react'
 import { Router, useParams } from 'react-router-dom';
-import { InfoContext } from '../../../App'
-import {dbStudents} from '../../../firebase/firebase'
+import { InfoContext } from '../../../../App'
+import {dbStudents} from '../../../../firebase/firebase'
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
-const ModalDeadline = ({ open, setOpen}) => {
+const ModalGoal = ({ open, setOpen}) => {
         const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const[birthday, setBirthday]=useState(null);
+        const[difficulty, setDifficulty]=useState(null);
+
         const [date, setDate] = useState(new Date());
         const[name,setName]=useState("");
         function writeFirebase(){
-                dbStudents.child(user).child('deadlines').push({
+                dbStudents.child(user).child('goals').push({
                         name:name,
+                        difficulty: difficulty,
                         date:date.getDate(),
                         day: date.getDay(),
                         year: date.getFullYear(),
@@ -24,16 +27,10 @@ const ModalDeadline = ({ open, setOpen}) => {
                 })
         }
         const TestDate = () => {
-
                 const onChange = (e, data) => {
                   setDate(data.value)
                   console.log(data.value);
                   console.log(data);
-                  // console.log(currentDate)
-                //   setBirthday(data.value);
-                  // console.log(data)
-                  // console.log()
-            
                 };
                 return <SemanticDatepicker
                   onChange={onChange}
@@ -46,16 +43,16 @@ const ModalDeadline = ({ open, setOpen}) => {
 
         return (
                 <Modal open={open}>
-                        <Header icon='archive' content='Create Deadline' />
+                        <Header icon='archive' content='Create Goal' />
                         <Modal.Content>
-                                <p>
-                                        Your coaches will be notified when you register and meet this deadline!
-                                </p>
-                                <Input value={name} onChange={(e, {value})=>setName(value)} placeholder='Enter Deadline Name...' />
+                                <Header color="teal">
+                                        Your coaches will be notified to approve this deadline!
+                                </Header>
+                                <Input value={name} onChange={(e, {value})=>setName(value)} placeholder='Enter Goal Name...' />
                                <Divider></Divider>
-                                <p>
-                                       Enter Deadline Due-Date:
-                                </p>
+                                <Header color="brown">
+                                       Enter Goal Completion Date:
+                                </Header>
                                 <TestDate />
                                
                         </Modal.Content>
@@ -70,4 +67,4 @@ const ModalDeadline = ({ open, setOpen}) => {
                 </Modal>
         );
 }
-export default ModalDeadline;
+export default ModalGoal;

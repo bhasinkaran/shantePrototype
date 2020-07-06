@@ -1,6 +1,6 @@
 import React from 'react'
-import { List, Segment } from 'semantic-ui-react'
-import { InfoContext } from '../../App'
+import { List, Segment, Button } from 'semantic-ui-react'
+import { InfoContext } from '../../../App'
 
 const UpcomingDeadlines = () => {
   const { user, students, hscounselors, collegecounselors, colleges, messages, coaches, chats } = React.useContext(InfoContext);

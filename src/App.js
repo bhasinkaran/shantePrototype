@@ -124,7 +124,6 @@ function App() {
       <Route exact path="/student/login" render={()=> <StudentLogin />}/>
       <Route exact path="/student" render={()=> withMenu(<StudentHomePage />)}/>
       <Route exact path="/student/coaches" render={()=> withMenu(<StudentCoaches />)}/>
-
       <Route exact path="/signup/student" render={()=> withMenu(<SignUpStudent />)}/>
       <Route exact path="/signup/student/pioneerform" render={()=> withMenu(<PioneerForm />)}/>
       <Route exact path="/college/:name" render={()=> withMenu(<CollegeHomepage />)}/>

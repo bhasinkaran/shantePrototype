@@ -7,10 +7,10 @@ import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 import PageHeader from '../PageHeader'
 import { InfoContext } from '../../App'
-import UpcomingDeadlines from './UpcomingDeadlines'
+import UpcomingDeadlines from './homepage/UpcomingDeadlines'
 import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
-import ModalDeadline from './homepage/CreateDeadline'
+import ModalDeadline from './homepage/Modals/CreateDeadline'
 import CoachPreview from './CoachPreview'
 import SideBar from './Sidebar'
 const StudentCoaches = () => {

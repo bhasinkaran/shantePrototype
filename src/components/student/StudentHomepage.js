@@ -7,68 +7,90 @@ import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 import PageHeader from '../PageHeader'
 import { InfoContext } from '../../App'
-import UpcomingDeadlines from './UpcomingDeadlines'
+import UpcomingDeadlines from './homepage/UpcomingDeadlines'
+import Goals from './homepage/Goals'
 import WelcomeGreeting from './homepage/welcomegreeting'
 import ReleventColleges from './homepage/releventcolleges'
-import ModalDeadline from './homepage/CreateDeadline'
+import ModalDeadline from './homepage/Modals/CreateDeadline'
+import ModalGoal from './homepage/Modals/CreateGoal'
 import SideBar from './Sidebar'
+
 const StudentHomePage = () => {
         const { user, students, hscounselors, collegecounselors, visible, setVisible, colleges, messages, coaches, chats } = React.useContext(InfoContext);
         const [wait, setWait] = useState(true);
         const [open, setOpen] = useState(false);
+        const [openGoal, setOpenGoal] = useState(false);
         setTimeout(() => setWait(false), 10000)
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
                 return (<div>
-        <Sidebar.Pushable as={Segment}>
+                        <Sidebar.Pushable as={Segment}>
                                 <SideBar>
-                                        
+
                                 </SideBar>
                                 <Sidebar.Pusher>
-                                        <Container>
-                                                <ModalDeadline open={open} setOpen={setOpen} />
-                                                <Grid centered padded>
-                                                        <Grid.Column width={4}>
-                                                                <Grid.Row>
-                                                                        <Image src={students[user]['url']} size='tiny' centered circular />
-                                                                        <Header textAlign="center" as="h2" > Welcome, {students[user]['firstName']}</Header>
-                                                                        <Header textAlign="center" style={{ marginTop: "-20px" }} as="h4" > {students[user]['state']}</Header>
-                                                                </Grid.Row>
-                                                                <Divider />
-                                                                <Grid.Row>
-                                                                        <WelcomeGreeting />
-                                                                </Grid.Row>
+                                        <ModalDeadline open={open} setOpen={setOpen} />
+                                        <ModalGoal open={openGoal} setOpen={setOpenGoal} />
 
-                                                                <Grid.Row>
+                                        <Grid centered padded>
+                                                <Grid.Column width={4}>
+                                                        <Grid.Row>
+                                                                <Image src={students[user]['url']} size='tiny' centered circular />
+                                                                <Header textAlign="center" as="h2" > Welcome, {students[user]['firstName']}</Header>
+                                                                <Header textAlign="center" style={{ marginTop: "-20px" }} as="h4" > {students[user]['state']}</Header>
+                                                        </Grid.Row>
+                                                        <Divider />
+                                                        <Grid.Row>
+                                                                <WelcomeGreeting />
+                                                        </Grid.Row>
 
-                                                                </Grid.Row>
-                                                        </Grid.Column>
-                                                        <Grid.Column width={9}>
-                                                                <ReleventColleges />
-                                                        </Grid.Column>
+                                                        <Grid.Row>
 
-                                                        <Grid.Column width={3}>
-                                                                <Grid.Row>
+                                                        </Grid.Row>
+                                                </Grid.Column>
+                                                <Grid.Column width={9}>
+                                                        <ReleventColleges />
+                                                </Grid.Column>
 
-                                                                        <Header as="h2" textAlign="center" color='teal' > Upcoming Deadlines</Header>
-                                                                        <Header as="h5" textAlign="center" style={{ marginTop: "-10px" }}> One step closer to your goals.</Header>
+                                                <Grid.Column width={3}>
+                                                        {/* NOW WE WILL SHOW THE CURRENT DEADLINES OF THE STUDENT */}
+                                                        <Grid.Row>
 
-                                                                </Grid.Row>
-                                                                <Divider></Divider>
-                                                                {students[user]['deadlines'] ? <UpcomingDeadlines />
+                                                                <Header as="h2" textAlign="center" color='teal' > Upcoming Deadlines</Header>
+                                                                <Header as="h5" textAlign="center" style={{ marginTop: "-10px" }}>Step closer to your goals.</Header>
+
+                                                        </Grid.Row>
+                                                        <Divider></Divider>
+                                                        {students[user]['deadlines'] ? <UpcomingDeadlines />
 
 
-                                                                        :
-                                                                        <div>
-                                                                                <Header textAlign="center" style={{ marginTop: "-10px" }} color='violet' as="h4"> None Upcoming.</Header>
+                                                                :
+                                                                <div>
+                                                                        <Header textAlign="center" style={{ marginTop: "-10px" }} color='violet' as="h4"> None Upcoming.</Header>
 
-                                                                        </div>}
-                                                                <Button onClick={() => setOpen(true)}>
-                                                                        Register a new deadline.
-                                                         </Button>
-                                                        </Grid.Column>
-                                                </Grid>
-                                        </Container>
+                                                                </div>}
+                                                        <Segment onClick={() => setOpen(true)} inverted color='olive'>
+                                                                Register new deadline.
+                                                        </Segment>
+
+                                                        {/* NOW WE WILL SHOW CURRENT THE GOALS OF THE STUDENT */}
+                                                        <Grid.Row style={{ marginTop: "15px" }}>
+
+                                                                <Header as="h2" textAlign="center" color='teal' > Current Goals</Header>
+                                                                {/* <Header as="h5" textAlign="center" style={{ marginTop: "-10px" }}></Header> */}
+
+                                                        </Grid.Row>
+                                                        <Divider></Divider>
+                                                        {students[user]['goals'] ? <Goals />
+                                                                :
+                                                                <div>
+                                                                        <Header textAlign="center" style={{ marginTop: "-10px" }} color='violet' as="h4"> None Registered.</Header>
+                                                                </div>}
+                                                        <Segment onClick={() => setOpenGoal(true)} inverted color='olive'>
+                                                                Create new goal.
+                                                        </Segment>
+                                                </Grid.Column>
+                                        </Grid>
                                 </Sidebar.Pusher>
                         </Sidebar.Pushable>
                 </div>)
