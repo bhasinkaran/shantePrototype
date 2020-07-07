@@ -11,7 +11,6 @@ import UpcomingDeadlines from './homepage/UpcomingDeadlines'
 import Goals from './homepage/Goals'
 import WelcomeGreeting from './homepage/welcomegreeting'
 import LaunchPad from './homepage/LaunchPad'
-import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/Modals/CreateDeadline'
 import ModalGoal from './homepage/Modals/CreateGoal'
 import ModalRequest  from './homepage/Modals/CreateRequest'
@@ -27,11 +26,6 @@ const StudentHomePage = () => {
         // useEffect(()=>console.log("It changed"), [students]);
         if (user && students && students[user])
                 return (<div>
-                        <Sidebar.Pushable as={Segment}>
-                                <SideBar>
-
-                                </SideBar>
-                                <Sidebar.Pusher>
                                         <ModalDeadline open={open} setOpen={setOpen} />
                                         <ModalGoal open={openGoal} setOpen={setOpenGoal} />
                                         <ModalRequest open={openRequest} setOpen={setOpenRequest} />
@@ -50,8 +44,6 @@ const StudentHomePage = () => {
                                                 </Grid.Column>
                                                 <Grid.Column width={9}>
                                                         {students[user]['dailycheckin']==false ? <WelcomeGreeting /> : <LaunchPad />}
-                                                        {/* {students[user]['dailycheckin']==2 ? <HowCanWeHelp /> : ""} */}
-                                                        {/* {students[user]['dailycheckin']==3 ? <LaunchPad /> : ""} */}
 
 
                                                 </Grid.Column>
@@ -108,8 +100,6 @@ const StudentHomePage = () => {
 
                                                 </Grid.Column>
                                         </Grid>
-                                </Sidebar.Pusher>
-                        </Sidebar.Pushable>
                 </div>)
         else if (!wait) {
                 return <Redirect push={true} to={'/student/login'} />

@@ -24,7 +24,7 @@ const ReturnCollege = ({ college, hashmap }) => {
         return (
                 <Grid.Row>
                         <Grid.Column width={16}>
-                                <Link to={`/college/${college.name}`}>
+                                <Link to={`/student/college/${college.name}`}>
                                 <Segment animated color={arrayColors[number]} raised>
                                 <Header color='teal' style={{ marginTop: "-5px" }} >{college.name}</Header>
                                 <Header color='violet' style={{ marginTop: "-10px" }} >{college.targetlocations}</Header>

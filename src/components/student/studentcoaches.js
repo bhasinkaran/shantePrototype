@@ -9,9 +9,9 @@ import PageHeader from '../PageHeader'
 import { InfoContext } from '../../App'
 import UpcomingDeadlines from './homepage/UpcomingDeadlines'
 import WelcomeGreeting from './homepage/welcomegreeting'
-import ReleventColleges from './homepage/releventcolleges'
+import ReleventColleges from './colleges/releventcolleges'
 import ModalDeadline from './homepage/Modals/CreateDeadline'
-import CoachPreview from './CoachPreview'
+import CoachPreview from './coach/CoachPreview'
 import SideBar from './Sidebar'
 const StudentCoaches = () => {
         const { user, students, hscounselors, collegecounselors, visible, setVisible ,colleges, messages, coaches, chats } = React.useContext(InfoContext);

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Header, Segment, Label, Button, Divider, Icon, Image, Grid } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const CoachPreview = ({ coach }) => (
-        <Segment compact>
+        <Segment compact as={Link} to={`/student/coach/${coach.username}`}>
                 <Grid compact >
                         <Grid.Column width="3">
-                                <Image size='big' src={coach.url} />
+                                <Image size='big' circular src={coach.url} />
                         </Grid.Column>
                         <Grid.Column width="11">
                                 <Grid.Row>
@@ -40,6 +41,10 @@ const CoachPreview = ({ coach }) => (
                                 <Divider></Divider>
                                 <Button fluid>
                                         Message
+                                </Button>
+                                <Divider></Divider>
+                                <Button fluid>
+                                        See Mutual Fit
                                 </Button>
                         </Grid.Column>
 

@@ -3,7 +3,7 @@ import _ from 'lodash'
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Header, Divider, Grid, Loader, Button, Image, Segment } from 'semantic-ui-react'
 import { Router, useParams, Link } from 'react-router-dom';
-import { InfoContext } from '../../App'
+import { InfoContext } from '../../../App'
 
 const Imagee = ({srcc})=> {
 

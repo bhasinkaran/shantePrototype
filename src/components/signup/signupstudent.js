@@ -263,7 +263,8 @@ const SignUpStudent = () => {
         "gender":gender,
         "pioneerform":false,
           "url":url,
-          "nameoffostercare":nameofFosterCare
+          "nameoffostercare":nameofFosterCare,
+          "dailycheckin":false
         }
         const k = dbStudents.update({
                 [username]:data
@@ -338,7 +339,7 @@ label='Last name' onChange={(e) => { setLastName(e.target.value) }} placeholder=
             }}
 
           />
-          <Form.Select pointing="bottom"
+          <Form.Select
             options={races}
             selection
             required={true}

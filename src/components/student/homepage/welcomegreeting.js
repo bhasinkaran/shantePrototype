@@ -113,6 +113,8 @@ const WelcomeGreeting = () => {
                                                                 <Button  size='huge' onClick={()=>  dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }}  as={Link} to={'/student/profile'} fluid > <Icon name='street view'></Icon>Profile</Button>
                                                                 <Divider />
                                                                 <Button size='huge' onClick={()=> dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} as={Link} to={'/student/requests'} fluid > <Icon name='question' />Requests</Button>
+                                                                <Divider />
+                                                                <Button size='huge' onClick={()=> dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} as={Link} to={'/student/colleges'} fluid > <Icon name='map signs' />Colleges</Button>
 
                                                         </Grid.Column>
                                                         <Grid.Column width={1}>
