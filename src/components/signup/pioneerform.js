@@ -428,7 +428,7 @@ const PioneerForm = () => {
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Dropdown
                   options={Majors}
                   selection
                   scrolling
@@ -447,7 +447,7 @@ const PioneerForm = () => {
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Dropdown 
                   options={Tuitionrange}
                   selection
                   scrolling
@@ -487,7 +487,7 @@ const PioneerForm = () => {
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Dropdown 
                   options={Locations}
                   selection
                   scrolling
@@ -506,7 +506,7 @@ const PioneerForm = () => {
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Dropdown 
                   options={types}
                   selection
                   scrolling
@@ -525,7 +525,7 @@ const PioneerForm = () => {
           <Grid.Row style={{ marginTop: "-23px" }}>
             <Form size="large">
               <Form.Group widths='equal'>
-                <Dropdown pointing="bottom"
+                <Dropdown 
                   options={courses}
                   selection
                   scrolling
