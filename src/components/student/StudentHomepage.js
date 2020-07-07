@@ -10,6 +10,7 @@ import { InfoContext } from '../../App'
 import UpcomingDeadlines from './homepage/UpcomingDeadlines'
 import Goals from './homepage/Goals'
 import WelcomeGreeting from './homepage/welcomegreeting'
+import LaunchPad from './homepage/LaunchPad'
 import ReleventColleges from './homepage/releventcolleges'
 import ModalDeadline from './homepage/Modals/CreateDeadline'
 import ModalGoal from './homepage/Modals/CreateGoal'
@@ -35,7 +36,7 @@ const StudentHomePage = () => {
                                         <ModalGoal open={openGoal} setOpen={setOpenGoal} />
                                         <ModalRequest open={openRequest} setOpen={setOpenRequest} />
 
-                                        <Grid centered padded>
+                                        <Grid centered divided padded>
                                                 <Grid.Column width={4}>
                                                         <Grid.Row>
                                                                 <Image src={students[user]['url']} size='tiny' centered circular />
@@ -43,16 +44,12 @@ const StudentHomePage = () => {
                                                                 <Header textAlign="center" style={{ marginTop: "-20px" }} as="h4" > {students[user]['state']}</Header>
                                                         </Grid.Row>
                                                         <Divider />
-                                                        {/* <Grid.Row>
-                                                                <WelcomeGreeting />
-                                                        </Grid.Row> */}
-
                                                         <Grid.Row>
 
                                                         </Grid.Row>
                                                 </Grid.Column>
                                                 <Grid.Column width={9}>
-                                                        {students[user]['dailycheckin']==false ? <WelcomeGreeting /> : "<LaunchPad />"}
+                                                        {students[user]['dailycheckin']==false ? <WelcomeGreeting /> : <LaunchPad />}
                                                         {/* {students[user]['dailycheckin']==2 ? <HowCanWeHelp /> : ""} */}
                                                         {/* {students[user]['dailycheckin']==3 ? <LaunchPad /> : ""} */}
 
