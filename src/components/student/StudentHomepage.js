@@ -52,7 +52,11 @@ const StudentHomePage = () => {
                                                         </Grid.Row>
                                                 </Grid.Column>
                                                 <Grid.Column width={9}>
-                                                        <WelcomeGreeting />
+                                                        {students[user]['dailycheckin']==false ? <WelcomeGreeting /> : "<LaunchPad />"}
+                                                        {/* {students[user]['dailycheckin']==2 ? <HowCanWeHelp /> : ""} */}
+                                                        {/* {students[user]['dailycheckin']==3 ? <LaunchPad /> : ""} */}
+
+
                                                 </Grid.Column>
 
                                                 <Grid.Column width={3}>
