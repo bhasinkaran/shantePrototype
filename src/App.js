@@ -20,6 +20,7 @@ import RegisterCoach from './components/register/registercoach'
 import StudentCoaches from './components/student/studentcoaches';
 import ReleventColleges from './components/student/colleges/releventcolleges';
 import SideBar from './components/student/Sidebar'
+import ChatsHomepage from './components/student/chats/ChatsHomepage';
 
 
 export const InfoContext = React.createContext();
@@ -57,6 +58,24 @@ function App() {
     // }
 
   }, [user, logged]);
+
+
+  // React.useEffect(() => {
+  //   const data = localStorage.getItem('userjson');
+  //   if (data) {
+  //     setUserJSON(data);
+  //   }
+  // }, []);
+  // React.useEffect(() => {
+  //   if(user&& students && students[user]){
+  //   localStorage.setItem('user', user);
+  //   localStorage.setItem('logged', logged);
+  //   }
+
+  // }, [user, logged, students]);
+
+
+
 
   useEffect(() => {
     const handleData = snap => {
@@ -138,6 +157,7 @@ function App() {
         <Route exact path="/student/colleges" render={() => withMenu(<ReleventColleges />)} />
         <Route exact path="/student/college/:name" render={() => withMenu(<CollegeHomepage />)} />
         <Route exact path="/student/coach/:coachid" render={() => withMenu(<CoachProfile />)} />
+        <Route exact path="/student/chats" render={ () => withMenu(<ChatsHomepage />)} />
 
         <Route exact path="/test" render={() => withMenu(<Location lat={51.505} long={-0.09} />)} />
 

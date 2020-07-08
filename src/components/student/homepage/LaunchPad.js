@@ -25,11 +25,14 @@ const LaunchPad = () => {
                                         <Button fluid={true} style={{ textAlign: "center" }} as={Link} to={'/student/coaches'} fluid > <Icon name='address card' />Coaches</Button>
                                         {/* </Button.Group> */}
                                         <Divider />
-                                        <Button fluid style={{ textAlign: "center" }} as={Link} to={'/student/goals'} fluid >  <Icon name='bolt' /> Goals</Button>
+                                        {/* as={Link} to={'/student/goals'} */}
+                                        <Button fluid style={{ textAlign: "center" }}  fluid >  <Icon name='bolt' /> Goals</Button>
                                         <Divider />
-                                        <Button fluid style={{ textAlign: "center" }} as={Link} to={'/student/profile'} fluid > <Icon name='street view'></Icon>Profile</Button>
+                                        {/* as={Link} to={'/student/profile'} */}
+                                        <Button fluid style={{ textAlign: "center" }}  fluid > <Icon name='street view'></Icon>Profile</Button>
                                         <Divider />
-                                        <Button fluid style={{ textAlign: "center" }} as={Link} to={'/student/requests'} fluid > <Icon name='question' />Requests</Button>
+                                        {/* to={'/student/requests'} */}
+                                        <Button fluid style={{ textAlign: "center" }} as={Link}  fluid > <Icon name='question' />Requests</Button>
                                         <Divider />
                                         <Button fluid style={{ textAlign: "center" }} as={Link} to={'/student/colleges'} fluid > <Icon name='map signs' />Colleges</Button>
 

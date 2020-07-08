@@ -20,15 +20,22 @@ const  SideBar=() =>{
                 <Icon name='home' />
 Home
 </Menu.Item>
-        <Menu.Item as={Link} to='/student/profile' onClick={()=>setTimeout(() => setVisible(false), 500)} >
+<Menu.Item as={Link} to='/student/chats' onClick={()=> setTimeout(() => setVisible(false), 500)}> 
+                <Icon name='chat' />
+Chats
+</Menu.Item>
+{/* as={Link} to='/student/profile' */}
+        <Menu.Item  onClick={()=>setTimeout(() => setVisible(false), 500)} >
                 <Icon name='street view' />
 Profile
 </Menu.Item>
-        <Menu.Item as={Link} to='/student/goals' onClick={()=>setTimeout(() => setVisible(false), 500)} >
+{/* as={Link} to='/student/goals' */}
+        <Menu.Item  onClick={()=>setTimeout(() => setVisible(false), 500)} >
                 <Icon name='bolt' />
 Goals
 </Menu.Item>
-        <Menu.Item as={Link} to='/student/requests' onClick={()=>setTimeout(() => setVisible(false), 500)} >
+{/* as={Link} to='/student/requests' */}
+        <Menu.Item  onClick={()=>setTimeout(() => setVisible(false), 500)} >
                 <Icon name='question' />
 Requests
 </Menu.Item>

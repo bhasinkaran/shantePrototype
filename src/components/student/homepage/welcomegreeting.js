@@ -108,11 +108,14 @@ const WelcomeGreeting = () => {
                                                                 } style={{ textAlign: "center" }} as={Link}  to={'/student/coaches'} fluid > <Icon name = 'address card' />Coaches</Button>
                                                                 {/* </Button.Group> */}
                                                                 <Divider />
-                                                                <Button size='huge' onClick={()=>  dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} as={Link}  to={'/student/goals'} fluid >  <Icon name = 'bolt' /> Goals</Button>
+                                                                {/* as={Link}  to={'/student/goals'} */}
+                                                                <Button size='huge' onClick={()=>  dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }}  fluid >  <Icon name = 'bolt' /> Goals</Button>
                                                                 <Divider />
-                                                                <Button  size='huge' onClick={()=>  dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }}  as={Link} to={'/student/profile'} fluid > <Icon name='street view'></Icon>Profile</Button>
+                                                                {/*  as={Link} to={'/student/profile'} */}
+                                                                <Button  size='huge' onClick={()=>  dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }}  fluid > <Icon name='street view'></Icon>Profile</Button>
                                                                 <Divider />
-                                                                <Button size='huge' onClick={()=> dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} as={Link} to={'/student/requests'} fluid > <Icon name='question' />Requests</Button>
+                                                                {/* as={Link} to={'/student/requests'}  */}
+                                                                <Button size='huge' onClick={()=> dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} fluid > <Icon name='question' />Requests</Button>
                                                                 <Divider />
                                                                 <Button size='huge' onClick={()=> dbStudents.child(user).child('dailycheckin').set(true)} style={{ textAlign: "center" }} as={Link} to={'/student/colleges'} fluid > <Icon name='map signs' />Colleges</Button>
 

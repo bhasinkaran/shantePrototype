@@ -55,7 +55,7 @@ const PageHeader = () => {
         </Grid>
           
           {redirectLogout ? <Redirect to={`/`} push={true} /> : ""}
-          {redirectSettings ? <Redirect to={`/student/settings`} push={true} /> : ""}
+          {/* {redirectSettings ? <Redirect to={`/student/settings`} push={true} /> : ""} */}
           {home ? <Redirect to={`/student`} push={true} /> : ""}
 
     </Segment>

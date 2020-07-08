@@ -5,7 +5,6 @@ import { Container, Header, Divider, Grid, Loader, Button, Image } from 'semanti
 import { Router, useParams, Link } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-import PageHeader from '../PageHeader'
 import { InfoContext } from '../../App'
 import UpcomingDeadlines from './homepage/UpcomingDeadlines'
 import Goals from './homepage/Goals'
