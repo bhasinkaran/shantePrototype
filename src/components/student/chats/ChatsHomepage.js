@@ -5,6 +5,7 @@ import { Container, Header, Divider, Grid, Loader, Button, Image } from 'semanti
 import { Router, useParams, Link } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 import { InfoContext } from '../../../App'
+import ReturnChat from './ReturnChat'
 
 
 const ChatsHomepage = () => {
@@ -24,37 +25,30 @@ const ChatsHomepage = () => {
         if (user && students)
                 return (
                         <div>
-                                <Segment style={{ overflow: 'auto', maxHeight: 200 }}>
-                                        <Menu pointing vertical>
-                                                {relevantpeople.map(coachid =>
-                                                        <Menu.Item
-                                                                name={coachid}
-                                                                active={activeItem === coachid}
-                                                                onClick={() => setActiveItem(coachid)}
-                                                        />
-                                                )}
-                                                <Menu.Item
-                                                        name={'coachid'}
-                                                        active={activeItem === 'coachid'}
-                                                        onClick={() => setActiveItem('coachid')}
-                                                />
-                                                <Menu.Item
-                                                        name={'coachid'}
-                                                        active={activeItem === 'coachid'}
-                                                        onClick={() => setActiveItem('coachid')}
-                                                />
-                                                <Menu.Item
-                                                        name={'coachid'}
-                                                        active={activeItem === 'coachid'}
-                                                        onClick={() => setActiveItem('coachid')}
-                                                />
-                                                <Menu.Item
-                                                        name={'coachid'}
-                                                        active={activeItem === 'coachid'}
-                                                        onClick={() => setActiveItem('coachid')}
-                                                />
-                                        </Menu>
-                                </Segment>
+                                <Grid>
+                                        <Grid.Column width={3}>
+                                                <Segment compact>
+                                                        <Segment raised style={{ "overflow-y": 'auto', maxHeight: 500 }}>
+                                                                <Menu pointing vertical>
+                                                                        {relevantpeople.map(coachid =>
+                                                                                <Menu.Item
+                                                                                        name={coachid}
+                                                                                        active={activeItem === coachid}
+                                                                                        onClick={() => setActiveItem(coachid)}
+                                                                                />
+                                                                        )}
+                                                                </Menu>
+                                                        </Segment>
+                                                </Segment>
+                                        </Grid.Column>
+                                        <Grid.Column width={13}>
+                                                <Segment compact>
+                                                        <ReturnChat contact={activeItem} />
+                                                        
+                                                </Segment>
+
+                                        </Grid.Column>
+                                </Grid>
                         </div>
                 )
         else {
