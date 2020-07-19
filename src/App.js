@@ -140,16 +140,16 @@ function App() {
   }
   return (
     <BrowserRouter>
-      {/* <InfoContext.Provider value={{ user, setUser, logged, setLogged, visible, setVisible, sidebool, setSideBool, students, hscounselors, collegecounselors, colleges, messages, coaches, chats }} >
-        <Route exact path="/" render={() => <HomepageLayout />} /> */}
+      <InfoContext.Provider value={{ user, setUser, logged, setLogged, visible, setVisible, sidebool, setSideBool, students, hscounselors, collegecounselors, colleges, messages, coaches, chats }} >
+        <Route exact path="/" render={() => <HomepageLayout />} />
 
         {/* Register */}
-        {/* <Route exact path="/register/college" render={() => <RegisterCollege />} />
-        <Route exact path="/register/coach" render={() => <RegisterCoach />} /> */}
+        <Route exact path="/register/college" render={() => <RegisterCollege />} />
+        <Route exact path="/register/coach" render={() => <RegisterCoach />} />
 
 
         {/* Student Pages */}
-        {/* <Route exact path="/student/login" render={() => <StudentLogin />} />
+        <Route exact path="/student/login" render={() => <StudentLogin />} />
         <Route exact path="/student" render={() => withMenu(<StudentHomePage />)} />
         <Route exact path="/student/coaches" render={() => withMenu(<StudentCoaches />)} />
         <Route exact path="/signup/student" render={() => withMenu(<SignUpStudent />)} />
@@ -160,7 +160,7 @@ function App() {
         <Route exact path="/student/chats" render={ () => withMenu(<ChatsHomepage />)} />
 
         <Route exact path="/test" render={() => withMenu(<Location lat={51.505} long={-0.09} />)} />
- */}
+
 
         {/* Coach Pages */}
 
@@ -170,8 +170,8 @@ function App() {
 
         {/* College Counselor Pages */}
 
-      {/* </InfoContext.Provider>
-    </BrowserRouter> */}
+      </InfoContext.Provider>
+    </BrowserRouter>
   );
 }
 
